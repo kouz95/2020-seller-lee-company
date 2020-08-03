@@ -1,6 +1,7 @@
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { ImageURISource } from "react-native";
 
 export type TabParamList = {
   Home: undefined;
@@ -48,6 +49,11 @@ export type ArticleDetailImageViewNavigationProp = StackNavigationProp<
   "ArticleDetailImageViewScreen"
 >;
 
+export type ArticleDetailImageViewRouteProp = RouteProp<
+  ArticleNavigationParamList,
+  "ArticleDetailImageViewScreen"
+>;
+
 export type CategoryParamList = {
   CategoryHome: undefined;
   CategoryDetail: { title: string };
@@ -74,28 +80,29 @@ export type SearchNavigationProp = StackNavigationProp<
   "Search"
 >;
 
-export type ArticleFormParamList = {
-  ArticleFormScreen: undefined;
+export type ImageSliderNavigationProp = StackNavigationProp<
+  ImageSliderParamList,
+  "ArticleDetailImageViewScreen"
+>;
+
+export interface CategoryItemProps {
+  title: string;
+}
+
+export type ArticleCreateParamList = {
+  ArticleCreateScreen: undefined;
   ArticleContentsFormScreen: undefined;
   CategoryChoiceScreen: undefined;
 };
 
-export type ArticleFormScreenNavigationProp = StackNavigationProp<
-  ArticleFormParamList,
-  "ArticleFormScreen"
+export type ArticleCreateScreenNavigationProp = StackNavigationProp<
+  ArticleCreateParamList,
+  "ArticleCreateScreen"
 >;
 
 export type ArticleContentsFormScreenNavigationProp = StackNavigationProp<
-  ArticleFormParamList,
+  ArticleCreateParamList,
   "ArticleContentsFormScreen"
->;
-export type ProfileParamList = {
-  PurchaseScreen: undefined;
-};
-
-export type PurchaseScreenNavigationProp = StackNavigationProp<
-  ProfileParamList,
-  "PurchaseScreen"
 >;
 
 export type Category =
@@ -161,6 +168,14 @@ export interface Feed {
   photos: string[];
 }
 
+export type ImageSliderParamList = {
+  ArticleDetailScreen: undefined;
+  ArticleDetailImageViewScreen: {
+    images: ImageURISource[];
+  };
+};
+
+
 export interface Article {
   id: number;
   title: string;
@@ -178,14 +193,16 @@ export interface Article {
   createdTime: string;
 }
 
-export interface ArticleCard {
+export interface ArticleCardProps {
+  id: number;
   title: string;
   price: number;
-  tradeType: string;
-  tradeLocation: string;
-  thumbnail: string;
   createdTime: string;
-}
+  favoriteCount: number;
+  chatCount: number;
+  thumbnail: string;
+  tradeState: string;
+};
 
 export interface Author {
   id: number;
@@ -223,25 +240,3 @@ export interface MiniArticleCardProps {
   thumbnail: string;
   tradeState: string;
 }
-
-
-export interface ArticleCardProps {
-  id: number;
-  title: string;
-  price: number;
-  createdTime: string;
-  favoriteCount: number;
-  chatCount: number;
-  thumbnail: string;
-  tradeState: string;
-}
-
-export type MyPageParamList = {
-  MyPage: undefined;
-  SalesDetails: undefined;
-};
-
-export type MyPageNavigationProps = StackNavigationProp<
-  MyPageParamList,
-  "SalesDetails"
->;
