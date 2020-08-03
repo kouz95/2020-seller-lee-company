@@ -1,6 +1,7 @@
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { ImageURISource } from "react-native";
 
 export type TabParamList = {
   Home: undefined;
@@ -114,6 +115,16 @@ export type Category =
   | "도서/티켓/음반"
   | "기타 중고물품";
 
+export interface CategoryAndTimeProps {
+  category: Category;
+  time: string;
+}
+
+export interface FavoriteCountAndHitProps {
+  favoriteCount: number;
+  hit: number;
+}
+
 export type AuthorScoreType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export interface ArticleDetailFavoriteProp {
@@ -129,6 +140,21 @@ export interface Feed {
   photos: string[];
 }
 
+export interface Tag {
+  id: number;
+  tag: string;
+}
+
+export interface CategoryAndTimeProps {
+  category: Category;
+  time: string;
+}
+
+export interface FavoriteCountAndHitProps {
+  favoriteCount: number;
+  hit: number;
+}
+
 export interface Feed {
   id: number;
   price: number;
@@ -136,6 +162,13 @@ export interface Feed {
   tags: string[];
   photos: string[];
 }
+
+export type ImageSliderParamList = {
+  ArticleDetailScreen: undefined;
+  ArticleDetailImageViewScreen: {
+    images: ImageURISource[];
+  };
+};
 
 export interface Article {
   id: number;
@@ -175,6 +208,16 @@ export interface Buyer {
   avatar: string;
   nickname: string;
 }
+
+export type MyPageParamList = {
+  MyPage: undefined;
+  SalesDetails: undefined;
+};
+
+export type MyPageNavigationProps = StackNavigationProp<
+  MyPageParamList,
+  "SalesDetails"
+>;
 
 export interface ArticleCardProps {
   title: string;
