@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MyPageNavigationProps } from "../types/types";
 
@@ -11,13 +11,27 @@ export default function MyPage() {
   const navigation = useNavigation<MyPageNavigationProps>();
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.MyPageContainer}>
       <TouchableOpacity
-        style={{ flex: 7 }}
+        style={styles.SalesDetailsContainer}
         onPress={() => navigation.navigate("SalesDetails")}
       >
-        <Text>판매 목록</Text>
+        <Text style={styles.text}>판매 목록</Text>
       </TouchableOpacity>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  MyPageContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  SalesDetailsContainer: {
+    backgroundColor: "red",
+  },
+  text: {
+    fontSize: 30,
+  },
+});
