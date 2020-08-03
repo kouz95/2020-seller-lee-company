@@ -189,3 +189,13 @@ export interface Buyer {
   avatar: string;
   nickname: string;
 }
+
+export type MyPageParamList = {
+  MyPage: undefined;
+  SalesDetails: undefined;
+};
+
+export type MyPageNavigationProps = StackNavigationProp<
+  MyPageParamList,
+  "SalesDetails"
+>;
