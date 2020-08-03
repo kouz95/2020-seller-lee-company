@@ -10,8 +10,8 @@ import ChatScreen from "../../screens/ChatScreen";
 import CategoryNavigation from "./CategoryNavigation";
 import ArticleCreateOptionsModal from "../Article/ArticleCreateOptionsModal";
 import ArticleCreateNavigation from "./ArticleCreateNavigation";
-import LoginScreen from "../../screens/LoginScreen";
 import ArticleNavigation from "./ArticleNavigation";
+import MyPageNavigation from "./MyPageNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +20,7 @@ function getTabBarVisibility(route: any) {
     ? route.state.routes[route.state.index].name
     : "";
 
-  return routeName !== "FeedDetail";
+  return routeName === "FeedHome" || routeName === "MyPage";
 }
 
 export default function BottomTabNavigation() {
@@ -79,8 +79,8 @@ export default function BottomTabNavigation() {
       />
       <Tab.Screen
         name="Profile"
-        component={LoginScreen}
-        options={{
+        component={MyPageNavigation}
+        options={({ route }) => ({
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="account-circle-outline"
@@ -88,7 +88,8 @@ export default function BottomTabNavigation() {
               color={color}
             />
           ),
-        }}
+          tabBarVisible: getTabBarVisibility(route),
+        })}
       />
     </Tab.Navigator>
   );

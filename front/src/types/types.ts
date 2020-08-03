@@ -204,3 +204,13 @@ export interface Favorite {
   memberId: number;
   articleId: number;
 }
+
+export type MyPageParamList = {
+  MyPage: undefined;
+  SalesDetails: undefined;
+};
+
+export type MyPageNavigationProps = StackNavigationProp<
+  MyPageParamList,
+  "SalesDetails"
+>;
