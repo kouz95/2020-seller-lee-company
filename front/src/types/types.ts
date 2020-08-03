@@ -235,3 +235,13 @@ export interface ArticleCardProps {
   thumbnail: string;
   tradeState: string;
 }
+
+export type MyPageParamList = {
+  MyPage: undefined;
+  SalesDetails: undefined;
+};
+
+export type MyPageNavigationProps = StackNavigationProp<
+  MyPageParamList,
+  "SalesDetails"
+>;
