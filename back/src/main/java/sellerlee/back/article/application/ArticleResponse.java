@@ -1,7 +1,3 @@
-/**
- * @author joseph415
- */
-
 package sellerlee.back.article.application;
 
 import java.time.LocalDateTime;

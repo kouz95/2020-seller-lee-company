@@ -1,7 +1,3 @@
-/**
- * @author begaonnuri
- */
-
 package sellerlee.back.article.application;
 
 import static java.util.stream.Collectors.*;
@@ -9,7 +5,6 @@ import static java.util.stream.Collectors.*;
 import java.util.List;
 
 import sellerlee.back.article.domain.Article;
-import sellerlee.back.article.domain.Tag;
 
 public class FeedResponse {
     private Long id;

@@ -1,10 +1,5 @@
-/**
- * @author joseph415
- */
-
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { innerContainerMargin } from "./ArticleCard";
 
 interface IArticleCardImage {
   thumbnail: string;
@@ -21,7 +16,7 @@ export default function ArticleCardImage({ thumbnail }: IArticleCardImage) {
 const styles = StyleSheet.create({
   imageContainer: {
     flex: 4.5,
-    margin: innerContainerMargin,
+    margin: 13,
   },
   image: {
     width: "100%",

@@ -1,7 +1,3 @@
-/**
- * @author kouz95
- */
-
 package sellerlee.back.article.application;
 
 import static org.assertj.core.api.Assertions.*;
@@ -9,6 +5,7 @@ import static org.mockito.Mockito.*;
 import static sellerlee.back.article.acceptance.ArticleAcceptanceTest.*;
 import static sellerlee.back.article.application.ArticleService.*;
 import static sellerlee.back.fixture.ArticleFixture.*;
+import static sellerlee.back.fixture.MemberFixture.*;
 import static sellerlee.back.fixture.TagFixture.*;
 
 import java.util.Arrays;
@@ -54,7 +51,7 @@ class ArticleServiceTest {
                 1L);
         when(articleRepository.save(any())).thenReturn(ARTICLE1);
 
-        Long actualId = articleService.post(request);
+        Long actualId = articleService.create(request);
 
         assertThat(actualId).isEqualTo(ARTICLE1.getId());
     }
@@ -94,5 +91,15 @@ class ArticleServiceTest {
         articleService.deleteById(ARTICLE1.getId());
 
         verify(articleRepository).deleteById(ARTICLE1.getId());
+    }
+
+    @DisplayName("tradeState를 변경함")
+    @Test
+    void patchTradeState() {
+        when(articleRepository.findByAuthorAndId(any(), any())).thenReturn(Optional.of(ARTICLE1));
+
+        TradeSateUpdateRequest tradeSateUpdateRequest = new TradeSateUpdateRequest(51L, "예약중");
+
+        articleService.updateTradeState(MEMBER1, tradeSateUpdateRequest);
     }
 }

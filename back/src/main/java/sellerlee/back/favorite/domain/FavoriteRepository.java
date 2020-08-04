@@ -1,7 +1,3 @@
-/**
- * @author joseph415
- */
-
 package sellerlee.back.favorite.domain;
 
 import java.util.Optional;
@@ -15,4 +11,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
     Optional<Favorite> findFavoriteByArticleAndMember(Article article, Member member);
 
     Long countAllByMember(Member member);
+
+    Long countAllByArticle(Article article);
 }

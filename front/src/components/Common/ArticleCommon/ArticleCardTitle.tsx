@@ -1,17 +1,13 @@
-/**
- * @author joseph415
- */
-
 import React from "react";
 import { Text, StyleSheet, View } from "react-native";
-
-const MAX_LIMIT_TITLE_LENGTH = 47;
 
 interface IArticleCardTitle {
   title: string;
 }
 
 export default function ArticleCardTitle({ title }: IArticleCardTitle) {
+  const MAX_LIMIT_TITLE_LENGTH = 47;
+
   return (
     <View style={styles.titleContainer}>
       <Text style={styles.title}>

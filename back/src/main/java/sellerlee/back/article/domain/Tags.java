@@ -1,7 +1,3 @@
-/**
- * @author jnsorn
- */
-
 package sellerlee.back.article.domain;
 
 import static java.util.Collections.*;

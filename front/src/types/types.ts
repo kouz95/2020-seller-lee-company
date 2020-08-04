@@ -1,16 +1,13 @@
-import { RouteProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { ImageURISource } from "react-native";
+import {RouteProp} from "@react-navigation/native";
+import {StackNavigationProp} from "@react-navigation/stack";
+import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 
 export type TabParamList = {
   Home: undefined;
 };
 
-export type TabHomeNavigationProp = BottomTabNavigationProp<
-  TabParamList,
-  "Home"
->;
+export type TabHomeNavigationProp = BottomTabNavigationProp<TabParamList,
+  "Home">;
 
 export type ArticleNavigationParamList = {
   Home: undefined;
@@ -24,30 +21,20 @@ export type ArticleNavigationParamList = {
   CategoryChoiceScreen: undefined;
 };
 
-export type FeedHomeNavigationProp = StackNavigationProp<
-  ArticleNavigationParamList,
-  "Home"
->;
+export type FeedHomeNavigationProp = StackNavigationProp<ArticleNavigationParamList,
+  "Home">;
 
-export type ChatRoomNavigationProp = StackNavigationProp<
-  ArticleNavigationParamList,
-  "ChatRoom"
->;
+export type ChatRoomNavigationProp = StackNavigationProp<ArticleNavigationParamList,
+  "ChatRoom">;
 
-export type ArticleDetailNavigationProp = StackNavigationProp<
-  ArticleNavigationParamList,
-  "ArticleDetailScreen"
->;
+export type ArticleDetailNavigationProp = StackNavigationProp<ArticleNavigationParamList,
+  "ArticleDetailScreen">;
 
-export type ArticleDetailImageSliderNavigationProp = StackNavigationProp<
-  ArticleNavigationParamList,
-  "ArticleDetailImageSlider"
->;
+export type ArticleDetailImageSliderNavigationProp = StackNavigationProp<ArticleNavigationParamList,
+  "ArticleDetailImageSlider">;
 
-export type ArticleDetailImageViewNavigationProp = StackNavigationProp<
-  ArticleNavigationParamList,
-  "ArticleDetailImageViewScreen"
->;
+export type ArticleDetailImageViewNavigationProp = StackNavigationProp<ArticleNavigationParamList,
+  "ArticleDetailImageViewScreen">;
 
 export type CategoryParamList = {
   CategoryHome: undefined;
@@ -55,25 +42,17 @@ export type CategoryParamList = {
   Search: undefined;
 };
 
-export type CategoryHomeNavigationProp = StackNavigationProp<
-  CategoryParamList,
-  "CategoryHome"
->;
+export type CategoryHomeNavigationProp = StackNavigationProp<CategoryParamList,
+  "CategoryHome">;
 
-export type CategoryDetailNavigationProp = StackNavigationProp<
-  CategoryParamList,
-  "CategoryDetail"
->;
+export type CategoryDetailNavigationProp = StackNavigationProp<CategoryParamList,
+  "CategoryDetail">;
 
-export type CategoryDetailRouteProp = RouteProp<
-  CategoryParamList,
-  "CategoryDetail"
->;
+export type CategoryDetailRouteProp = RouteProp<CategoryParamList,
+  "CategoryDetail">;
 
-export type SearchNavigationProp = StackNavigationProp<
-  CategoryParamList,
-  "Search"
->;
+export type SearchNavigationProp = StackNavigationProp<CategoryParamList,
+  "Search">;
 
 export type ArticleFormParamList = {
   ArticleFormScreen: undefined;
@@ -81,15 +60,11 @@ export type ArticleFormParamList = {
   CategoryChoiceScreen: undefined;
 };
 
-export type ArticleFormScreenNavigationProp = StackNavigationProp<
-  ArticleFormParamList,
-  "ArticleFormScreen"
->;
+export type ArticleFormScreenNavigationProp = StackNavigationProp<ArticleFormParamList,
+  "ArticleFormScreen">;
 
-export type ArticleContentsFormScreenNavigationProp = StackNavigationProp<
-  ArticleFormParamList,
-  "ArticleContentsFormScreen"
->;
+export type ArticleContentsFormScreenNavigationProp = StackNavigationProp<ArticleFormParamList,
+  "ArticleContentsFormScreen">;
 
 export type Category =
   | "디지털/가전"
@@ -186,9 +161,17 @@ export interface Buyer {
 export type MyPageParamList = {
   MyPage: undefined;
   SalesDetails: undefined;
+  ArticleDetailScreen: undefined;
+  Evaluation: undefined;
 };
 
-export type MyPageNavigationProps = StackNavigationProp<
-  MyPageParamList,
-  "SalesDetails"
->;
+export interface MiniArticleCardProps {
+  id: number;
+  title: string;
+  price: number;
+  createdTime: string;
+  favoriteCount: number;
+  chatCount: number;
+  thumbnail: string;
+  tradeState: string;
+}
