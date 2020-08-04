@@ -32,11 +32,6 @@ export type FeedHomeNavigationProp = StackNavigationProp<
   "FeedHome"
 >;
 
-export type FeedDetailNavigationProp = StackNavigationProp<
-  ArticleNavigationParamList,
-  "FeedDetail"
->;
-
 export type ChatRoomNavigationProp = StackNavigationProp<
   ArticleNavigationParamList,
   "ChatRoom"
@@ -82,15 +77,6 @@ export type SearchNavigationProp = StackNavigationProp<
   CategoryParamList,
   "Search"
 >;
-
-export type ImageSliderNavigationProp = StackNavigationProp<
-  ImageSliderParamList,
-  "ArticleDetailImageViewScreen"
->;
-
-export interface CategoryItemProps {
-  title: string;
-}
 
 export type ArticleCreateParamList = {
   ArticleCreateScreen: undefined;
@@ -172,11 +158,6 @@ export type ImageSliderParamList = {
   };
 };
 
-export type ArticleDetailNavigationProp = StackNavigationProp<
-  ArticleNavigationParamList,
-  "ArticleDetailScreen"
->;
-
 export interface Article {
   id: number;
   title: string;
@@ -214,3 +195,14 @@ export type MyPageNavigationProps = StackNavigationProp<
   MyPageParamList,
   "SalesDetails"
 >;
+
+export interface ArticleCardProps {
+  title: string;
+  price: number;
+  tradeType: string;
+  location?: string;
+  createdAt: string;
+  favoriteCount: number;
+  chatCount: number;
+  thumbnail: string;
+}

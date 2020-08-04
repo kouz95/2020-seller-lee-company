@@ -4,20 +4,22 @@
 
 import React from "react";
 import { FlatList } from "react-native";
-import { categoryMockArticles } from "../data/categoryArticleMockData";
+import { MockArticles } from "../data/ArticleMockData";
 import SalesDetailsComponent from "../components/SalesDetailsComponent";
 
 export default function SalesDetailsScreen() {
   return (
     <FlatList
-      data={categoryMockArticles}
+      data={MockArticles}
       renderItem={({ item }) => (
         <SalesDetailsComponent
           title={item.title}
           price={item.price}
+          tradeType={item.tradeType}
+          location={item.location}
           createdAt={item.createdAt}
-          detail={item.detail}
-          additional={item.additional}
+          favoriteCount={item.favoriteCount}
+          chatCount={item.chatCount}
           thumbnail={item.thumbnail}
         />
       )}
