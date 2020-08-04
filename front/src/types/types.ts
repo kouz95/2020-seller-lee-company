@@ -13,7 +13,7 @@ export type TabHomeNavigationProp = BottomTabNavigationProp<
 >;
 
 export type ArticleNavigationParamList = {
-  FeedHome: undefined;
+  Home: undefined;
   SellerLee: undefined;
   ChatRoom: undefined;
   ArticleDetailScreen: undefined;
@@ -26,7 +26,7 @@ export type ArticleNavigationParamList = {
 
 export type FeedHomeNavigationProp = StackNavigationProp<
   ArticleNavigationParamList,
-  "FeedHome"
+  "Home"
 >;
 
 export type ChatRoomNavigationProp = StackNavigationProp<
@@ -162,13 +162,6 @@ export interface Feed {
   tags: string[];
   photos: string[];
 }
-
-export type ImageSliderParamList = {
-  ArticleDetailScreen: undefined;
-  ArticleDetailImageViewScreen: {
-    images: ImageURISource[];
-  };
-};
 
 export interface Article {
   id: number;
