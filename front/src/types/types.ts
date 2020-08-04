@@ -1,7 +1,6 @@
-import { RouteProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { ImageURISource } from "react-native";
+import {RouteProp} from "@react-navigation/native";
+import {StackNavigationProp} from "@react-navigation/stack";
+import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 
 export type TabParamList = {
   Home: undefined;
@@ -205,12 +204,25 @@ export interface Buyer {
 export type MyPageParamList = {
   MyPage: undefined;
   SalesDetails: undefined;
+  ArticleDetailScreen: undefined;
+  Evaluation: undefined;
 };
 
 export type MyPageNavigationProps = StackNavigationProp<
   MyPageParamList,
   "SalesDetails"
 >;
+
+export interface MiniArticleCardProps {
+  id: number;
+  title: string;
+  price: number;
+  createdTime: string;
+  favoriteCount: number;
+  chatCount: number;
+  thumbnail: string;
+  tradeState: string;
+}
 
 export interface ArticleCardProps {
   title: string;

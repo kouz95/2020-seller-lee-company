@@ -37,7 +37,7 @@ public class ArticleController {
 
     @PostMapping
     public ResponseEntity<Void> post(@RequestBody ArticleRequest request) {
-        Long articleId = articleService.post(request);
+        Long articleId = articleService.create(request);
 
         return ResponseEntity
                 .created(URI.create(ARTICLE_URI + "/" + articleId))

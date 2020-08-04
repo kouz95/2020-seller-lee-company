@@ -3,6 +3,7 @@ import axios from "axios";
 // const BASE_URL = "http://3.34.248.131:8080";
 const BASE_URL = "http://localhost:8080";
 const domain = {
+  tradeState: "/trade-state",
   articles: "/articles",
   members: "/members",
   trades: "/trades",
@@ -33,15 +34,20 @@ interface ArticlesGetByTradeState {
 
 export const articlesAPI = {
   get: async (params: ArticlesGet) =>
-    await axios.get(`${BASE_URL}${domain.articles}`, { params }),
+    await axios.get(`${BASE_URL}${domain.articles}`, {params}),
   getByTradeState: async (params: ArticlesGetByTradeState) =>
-    await axios.get(`${BASE_URL}${domain.articles}/trade-state`, { params }),
+    await axios.get(`${BASE_URL}${domain.articles}/trade-state`, {params}),
   post: async (data: ArticlesPost) =>
     await axios.post(`${BASE_URL}${domain.articles}`, data),
   put: async (articleId: number, data: ArticlesPost) =>
     await axios.put(`${BASE_URL}${domain.articles}/${articleId}`, data),
   delete: async (articleId: number) =>
     await axios.delete(`${BASE_URL}${domain.articles}/${articleId}`),
+  updateTradeState: async (id: number, data: ArticlesGetByTradeState) =>
+    await axios.patch(
+      `${BASE_URL}${domain.articles}/${id}${domain.tradeState}`,
+      data,
+    ),
 };
 
 export const articleDetailAPI = {
@@ -61,7 +67,7 @@ interface MemberLogin {
 
 export const memberAPI = {
   post: async (data: MemberLogin) =>
-    await axios.post(`${BASE_URL}${domain.login}`, { data }),
+    await axios.post(`${BASE_URL}${domain.login}`, {data}),
 };
 
 export const chatRoomAPI = {
@@ -85,7 +91,7 @@ export const favoriteAPI = {
   post: async (data: FavoriteCreate) =>
     await axios.post(BASE_URL + domain.favorites, data),
   delete: async (data: FavoriteDelete) =>
-    await axios.delete(BASE_URL + domain.favorites, { data }),
+    await axios.delete(BASE_URL + domain.favorites, {data}),
 };
 
 export const tradeAPI = {

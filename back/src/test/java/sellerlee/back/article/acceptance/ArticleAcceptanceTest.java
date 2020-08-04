@@ -12,11 +12,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import sellerlee.back.AcceptanceTest;
 import sellerlee.back.article.application.ArticleResponse;
 import sellerlee.back.article.application.FeedResponse;
+import sellerlee.back.article.application.SalesHistoryResponse;
+import sellerlee.back.article.application.TradeSateUpdateRequest;
 
 public class ArticleAcceptanceTest extends AcceptanceTest {
     public static final Long LAST_ARTICLE_ID = 4L;
@@ -39,6 +42,7 @@ public class ArticleAcceptanceTest extends AcceptanceTest {
      * When 게시글을 삭제한다.
      * Then 게시글이 삭제된다.
      */
+
     @DisplayName("게시글을 관리한다")
     @TestFactory
     Stream<DynamicTest> manageArticle() throws JsonProcessingException {
@@ -58,9 +62,32 @@ public class ArticleAcceptanceTest extends AcceptanceTest {
                     assertThat(articleResponse.getId()).isEqualTo(articleId);
                     assertThat(articleResponse.getFavoriteState()).isFalse();
                 }),
+                dynamicTest("예약중|거래중 게시글 조회", () -> {
+                    List<SalesHistoryResponse> salesHistoryResponses = showSalesHistory();
+                    assertThat(salesHistoryResponses).hasSize(4);
+                }),
+                dynamicTest("예약중 으로 tradeState 변경후 조회", () -> {
+                    updateTradeState();
+                    ArticleResponse articleResponse = getArticleResponse();
+
+                    assertThat(articleResponse.getTradeState()).isEqualTo("예약중");
+                }),
                 dynamicTest("게시글 삭제", () -> {
                     deleteArticle(articleId);
                 }));
+    }
+
+    private ArticleResponse getArticleResponse() {
+        String url = ARTICLE_URI + "/1";
+
+        return given()
+                .when()
+                .param("memberId", 51L)
+                .get(url)
+                .then()
+                .log().all()
+                .statusCode(HttpStatus.OK.value())
+                .extract().jsonPath().getObject(".", ArticleResponse.class);
     }
 
     private List<FeedResponse> findArticleInFeed(Long articleId) {
@@ -104,6 +131,39 @@ public class ArticleAcceptanceTest extends AcceptanceTest {
         .then()
                 .log().all()
                 .statusCode(HttpStatus.NO_CONTENT.value());
+        // @formatter:on
+    }
+
+    private List<SalesHistoryResponse> showSalesHistory() {
+        String url = ARTICLE_URI + "/trade-state";
+
+        // @formatter:off
+        return given()
+                .when()
+                    .param("tradeState", "예약중|거래중")
+                    .get(url)
+                .then()
+                    .log().all()
+                    .statusCode(HttpStatus.OK.value())
+                    .extract().jsonPath().getList(".", SalesHistoryResponse.class);
+        // @formatter:on
+    }
+
+    private void updateTradeState() {
+        String url = ARTICLE_URI + "/trade-state";
+
+        TradeSateUpdateRequest tradeSateUpdateRequest = new TradeSateUpdateRequest(1L, "예약중");
+
+        // @formatter:off
+        given()
+        .when()
+                .body(tradeSateUpdateRequest)
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .patch(url)
+        .then()
+                .log().all()
+                .statusCode(HttpStatus.OK.value());
         // @formatter:on
     }
 }

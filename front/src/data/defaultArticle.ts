@@ -4,7 +4,7 @@ export const defaultArticle = {
   categoryName: "",
   contents: "",
   price: 0,
-  tradeType: "",
+  createTime: "",
   tradeLocation: "",
   tradeState: "",
   tags: [],

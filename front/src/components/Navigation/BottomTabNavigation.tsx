@@ -13,9 +13,9 @@ const Tab = createBottomTabNavigator();
 function getTabBarVisibility(route: any) {
   const routeName = route.state
     ? route.state.routes[route.state.index].name
-    : "";
+    : "Home";
 
-  return routeName === "FeedHome" || routeName === "ProfileScreen";
+  return routeName === "Home" || routeName === "ProfileScreen";
 }
 
 export default function BottomTabNavigation() {
