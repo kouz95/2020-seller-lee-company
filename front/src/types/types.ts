@@ -163,13 +163,6 @@ export interface Feed {
   photos: string[];
 }
 
-export type ImageSliderParamList = {
-  ArticleDetailScreen: undefined;
-  ArticleDetailImageViewScreen: {
-    images: ImageURISource[];
-  };
-};
-
 export interface Article {
   id: number;
   title: string;
