@@ -1,3 +1,7 @@
+/**
+ * @author joseph415
+ */
+
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
@@ -79,15 +83,6 @@ export type SearchNavigationProp = StackNavigationProp<
   CategoryParamList,
   "Search"
 >;
-
-export type ImageSliderNavigationProp = StackNavigationProp<
-  ImageSliderParamList,
-  "ArticleDetailImageViewScreen"
->;
-
-export interface CategoryItemProps {
-  title: string;
-}
 
 export type ArticleCreateParamList = {
   ArticleCreateScreen: undefined;
@@ -175,7 +170,6 @@ export type ImageSliderParamList = {
   };
 };
 
-
 export interface Article {
   id: number;
   title: string;
@@ -202,7 +196,7 @@ export interface ArticleCardProps {
   chatCount: number;
   thumbnail: string;
   tradeState: string;
-};
+}
 
 export interface Author {
   id: number;
@@ -229,14 +223,3 @@ export type MyPageNavigationProps = StackNavigationProp<
   MyPageParamList,
   "SalesDetails"
 >;
-
-export interface MiniArticleCardProps {
-  id: number;
-  title: string;
-  price: number;
-  createdTime: string;
-  favoriteCount: number;
-  chatCount: number;
-  thumbnail: string;
-  tradeState: string;
-}
