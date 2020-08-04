@@ -1,5 +1,5 @@
 /**
- * @author lxxjn0
+ * @author joseph415
  */
 
 import React from "react";
@@ -42,7 +42,6 @@ export default function ArticleCard({
   );
 }
 
-export const innerContainerMargin = 10;
 
 const styles = StyleSheet.create({
   container: {
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
   },
   contentsContainer: {
     flex: 1,
-    margin: innerContainerMargin,
+    margin: 13,
   },
   articleCardImageContainer: {
     aspectRatio: 1,
