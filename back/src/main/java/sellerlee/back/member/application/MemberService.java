@@ -1,7 +1,3 @@
-/**
- * @author lxxjn0
- */
-
 package sellerlee.back.member.application;
 
 import org.springframework.stereotype.Service;
