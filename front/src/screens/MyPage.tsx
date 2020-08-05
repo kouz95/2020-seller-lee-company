@@ -1,8 +1,8 @@
 import React from "react";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {useNavigation} from "@react-navigation/native";
-import {MyPageParamList} from "../types/types";
-import {StackNavigationProp} from "@react-navigation/stack";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { MyPageParamList } from "../types/types";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 type MyPageNavigationProps = StackNavigationProp<MyPageParamList, "MyPage">;
 

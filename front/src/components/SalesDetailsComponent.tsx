@@ -1,8 +1,4 @@
-/**
- * @author joseph415
- */
-
-import React, { useRef } from "react";
+import React, {useRef} from "react";
 import {
   Animated,
   StyleSheet,
@@ -11,20 +7,18 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import CategoryArticleCard, {
-  CategoryArticleCardProps,
-} from "./Category/CategoryArticleCard";
+import CategoryArticleCard, {CategoryArticleCardProps,} from "./Category/CategoryArticleCard";
 import colors from "../colors";
 
 const ANIMATE_START_VALUE = 0.98;
 
 export default function SalesDetailsComponent({
-  title,
-  price,
-  createdAt,
-  additional,
-  thumbnail,
-}: CategoryArticleCardProps) {
+                                                title,
+                                                price,
+                                                createdAt,
+                                                additional,
+                                                thumbnail,
+                                              }: CategoryArticleCardProps) {
   const AnimateTouchableWithoutFeedback = Animated.createAnimatedComponent(
     TouchableWithoutFeedback,
   );
@@ -44,7 +38,7 @@ export default function SalesDetailsComponent({
   return (
     <AnimateTouchableWithoutFeedback
       onPress={clickArticleAnimate}
-      style={{ transform: [{ scale: clickValue }] }}
+      style={{transform: [{scale: clickValue}]}}
     >
       <View style={styles.salesDetailsComponent}>
         <CategoryArticleCard

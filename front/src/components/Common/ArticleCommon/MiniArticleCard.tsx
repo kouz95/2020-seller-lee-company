@@ -34,8 +34,6 @@ export default function MiniArticleCard({
   );
 }
 
-const innerContainerMargin = 13;
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -43,6 +41,6 @@ const styles = StyleSheet.create({
   },
   contentsContainer: {
     flex: 10.5,
-    margin: innerContainerMargin,
+    margin: 13,
   },
 });
