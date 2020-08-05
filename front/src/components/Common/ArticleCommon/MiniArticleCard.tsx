@@ -4,13 +4,13 @@
 
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { ArticleCardProps } from "../../../types/types";
+import { MiniArticleCardProps } from "../../../types/types";
 import ArticleCardImage from "./ArticleCardImage";
 import ArticleCardTitle from "./ArticleCardTitle";
 import ArticleCardTradeDetails from "./ArticleCardTradeDetails";
 import ArticleCardAdditional from "./ArticleCardAdditional";
 
-export default function ArticleCard({
+export default function MiniArticleCard({
   title,
   price,
   tradeType,
@@ -19,7 +19,8 @@ export default function ArticleCard({
   favoriteCount,
   chatCount,
   thumbnail,
-}: ArticleCardProps) {
+  tradeState,
+}: MiniArticleCardProps) {
   return (
     <View style={styles.container}>
       <ArticleCardImage thumbnail={thumbnail} />

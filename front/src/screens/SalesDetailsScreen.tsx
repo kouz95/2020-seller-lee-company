@@ -5,14 +5,14 @@
 import React from "react";
 import { FlatList } from "react-native";
 import { MockArticles } from "../data/ArticleMockData";
-import SalesDetailsComponent from "../components/SalesDetailsComponent";
+import CompletedSalesComponent from "../components/CompletedSalesComponent";
 
 export default function SalesDetailsScreen() {
   return (
     <FlatList
       data={MockArticles}
       renderItem={({ item }) => (
-        <SalesDetailsComponent
+        <CompletedSalesComponent
           title={item.title}
           price={item.price}
           tradeType={item.tradeType}
@@ -21,6 +21,7 @@ export default function SalesDetailsScreen() {
           favoriteCount={item.favoriteCount}
           chatCount={item.chatCount}
           thumbnail={item.thumbnail}
+          tradeState={item.tradeState}
         />
       )}
       keyExtractor={(item, index) => `${index}`}

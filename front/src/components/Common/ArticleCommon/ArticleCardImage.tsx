@@ -4,7 +4,7 @@
 
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { innerContainerMargin } from "./ArticleCard";
+import { innerContainerMargin } from "./MiniArticleCard";
 
 interface IArticleCardImage {
   thumbnail: string;

@@ -182,14 +182,11 @@ export interface Favorite {
 export type MyPageParamList = {
   MyPage: undefined;
   SalesDetails: undefined;
+  ArticleDetailScreen: undefined;
+  EvaluationBuyer: undefined;
 };
 
-export type MyPageNavigationProps = StackNavigationProp<
-  MyPageParamList,
-  "SalesDetails"
->;
-
-export interface ArticleCardProps {
+export interface MiniArticleCardProps {
   title: string;
   price: number;
   tradeType: string;
@@ -198,4 +195,5 @@ export interface ArticleCardProps {
   favoriteCount: number;
   chatCount: number;
   thumbnail: string;
+  tradeState: string;
 }

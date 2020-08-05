@@ -5,7 +5,10 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { MyPageNavigationProps } from "../types/types";
+import { MyPageParamList } from "../types/types";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+type MyPageNavigationProps = StackNavigationProp<MyPageParamList, "MyPage">;
 
 export default function MyPage() {
   const navigation = useNavigation<MyPageNavigationProps>();
