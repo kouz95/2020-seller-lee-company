@@ -1,26 +1,25 @@
 import React from "react";
-import {StyleSheet, View} from "react-native";
-import {MiniArticleCardProps} from "../../../types/types";
+import { StyleSheet, View } from "react-native";
+import { MiniArticleCardProps } from "../../../types/types";
 import ArticleCardImage from "./ArticleCardImage";
 import ArticleCardTitle from "./ArticleCardTitle";
 import ArticleCardTradeDetails from "./ArticleCardTradeDetails";
 import ArticleCardAdditional from "./ArticleCardAdditional";
 
 export default function MiniArticleCard({
-                                          id,
-                                          title,
-                                          price,
-                                          createdTime,
-                                          favoriteCount,
-                                          chatCount,
-                                          thumbnail,
-                                          tradeState,
-                                        }: MiniArticleCardProps) {
+  title,
+  price,
+  createdTime,
+  favoriteCount,
+  chatCount,
+  thumbnail,
+  tradeState,
+}: MiniArticleCardProps) {
   return (
-    <View key={id} style={styles.container}>
-      <ArticleCardImage thumbnail={thumbnail}/>
+    <View style={styles.container}>
+      <ArticleCardImage thumbnail={thumbnail} />
       <View style={styles.contentsContainer}>
-        <ArticleCardTitle title={title}/>
+        <ArticleCardTitle title={title} />
         <ArticleCardTradeDetails
           createdTime={createdTime}
         />

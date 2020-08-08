@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {FlatList} from "react-native";
-import OnSaleAndReservationComponent from "../components/OnSaleAndReservationComponent";
-import {MiniArticleCardProps} from "../types/types";
-import {articlesAPI} from "../api/api";
-import {useIsFocused} from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { FlatList } from "react-native";
+import SalesDetailsComponent from "../components/SalesDetailsComponent";
+import { MiniArticleCardProps } from "../types/types";
+import { useIsFocused } from "@react-navigation/native";
+import { articlesAPI } from "../api/api";
 
 export const ON_SALE = "판매중";
 export const RESERVATION = "예약중";
@@ -27,8 +27,8 @@ export default function SalesDetailsScreen() {
   return (
     <FlatList
       data={salesDetails}
-      renderItem={({item}) => (
-        <OnSaleAndReservationComponent
+      renderItem={({ item }) => (
+        <SalesDetailsComponent
           id={item.id}
           title={item.title}
           price={item.price}
