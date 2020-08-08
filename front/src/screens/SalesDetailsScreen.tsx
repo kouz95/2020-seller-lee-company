@@ -2,17 +2,34 @@
  * @author joseph415
  */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import { MockArticles } from "../data/ArticleMockData";
-import CompletedSalesComponent from "../components/CompletedSalesComponent";
+import SalesDetailsComponent from "../components/SalesDetailsComponent";
+import { MiniArticleCardProps } from "../types/types";
+import axios from "axios";
 
 export default function SalesDetailsScreen() {
+  const [salesDetails, setSalesDetails] = useState<MiniArticleCardProps[]>();
+
+  const getSalesDetails = async () => {
+    const { data } = await axios.get("/article", {
+      params: {
+        tradeState: "예약중|판매중",
+      },
+    });
+    setSalesDetails(data);
+  };
+
+  useEffect(() => {
+    getSalesDetails();
+  }, []);
+
   return (
     <FlatList
-      data={MockArticles}
+      data={salesDetails}
       renderItem={({ item }) => (
-        <CompletedSalesComponent
+        <SalesDetailsComponent
+          id={item.id}
           title={item.title}
           price={item.price}
           tradeType={item.tradeType}

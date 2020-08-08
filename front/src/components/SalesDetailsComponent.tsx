@@ -21,7 +21,8 @@ const ANIMATE_START_VALUE = 0.93;
 
 type SalesDetails = StackNavigationProp<MyPageParamList, "SalesDetails">;
 
-export default function CompletedSalesComponent({
+export default function SalesDetailsComponent({
+  id,
   title,
   price,
   tradeType,
@@ -58,6 +59,7 @@ export default function CompletedSalesComponent({
       <View style={styles.salesDetailsComponent}>
         <View style={styles.miniArticleContainer}>
           <MiniArticleCard
+            id={id}
             title={title}
             price={price}
             tradeType={tradeType}

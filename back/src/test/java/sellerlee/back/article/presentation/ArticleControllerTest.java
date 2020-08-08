@@ -30,6 +30,7 @@ import sellerlee.back.article.application.ArticleResponse;
 import sellerlee.back.article.application.ArticleService;
 import sellerlee.back.article.application.ArticleViewService;
 import sellerlee.back.article.application.FeedResponse;
+import sellerlee.back.article.application.SalesDetailsResponse;
 
 @WebMvcTest(controllers = ArticleController.class)
 class ArticleControllerTest {
@@ -84,6 +85,18 @@ class ArticleControllerTest {
 
         mockMvc.perform(get(ARTICLE_URI + "/{id}", ARTICLE1.getId())
                 .param("memberId", String.valueOf(MEMBER1.getId())))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @DisplayName("판매내역을 상세조회 한다.")
+    @Test
+    void showSalesDetails() throws Exception {
+        when(articleViewService.showSalesDetails(any(), any()))
+                .thenReturn(SalesDetailsResponse.of(ARTICLE1, 5L, 3L));
+
+        mockMvc.perform(get(ARTICLE_URI + "/tradeState")
+                .param("tradeState", "예약중|판매중"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }

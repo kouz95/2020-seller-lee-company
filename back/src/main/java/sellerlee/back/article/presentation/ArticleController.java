@@ -23,6 +23,8 @@ import sellerlee.back.article.application.ArticleResponse;
 import sellerlee.back.article.application.ArticleService;
 import sellerlee.back.article.application.ArticleViewService;
 import sellerlee.back.article.application.FeedResponse;
+import sellerlee.back.article.application.SalesDetailsResponse;
+import sellerlee.back.member.domain.Member;
 
 @RestController
 @RequestMapping(ARTICLE_URI)
@@ -60,5 +62,21 @@ public class ArticleController {
         ArticleResponse articleResponse = articleViewService.showArticle(articleId, memberId);
 
         return ResponseEntity.ok(articleResponse);
+    }
+
+    @GetMapping("/tradeState")
+    public ResponseEntity<SalesDetailsResponse> showSalesDetailsArticle(
+            @RequestParam String tradeState) {
+        Member member = new Member(
+                51L,
+                "turtle@woowabro.com",
+                "1234",
+                "testNickname",
+                "testUri",
+                4.5);
+        SalesDetailsResponse salesDetailsResponse = articleViewService.showSalesDetails(member,
+                tradeState);
+
+        return ResponseEntity.ok(salesDetailsResponse);
     }
 }

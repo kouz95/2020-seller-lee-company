@@ -187,6 +187,7 @@ export type MyPageParamList = {
 };
 
 export interface MiniArticleCardProps {
+  id: number;
   title: string;
   price: number;
   tradeType: string;

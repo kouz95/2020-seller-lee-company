@@ -11,6 +11,7 @@ import ArticleCardTradeDetails from "./ArticleCardTradeDetails";
 import ArticleCardAdditional from "./ArticleCardAdditional";
 
 export default function MiniArticleCard({
+  id,
   title,
   price,
   tradeType,
@@ -22,7 +23,7 @@ export default function MiniArticleCard({
   tradeState,
 }: MiniArticleCardProps) {
   return (
-    <View style={styles.container}>
+    <View key={id} style={styles.container}>
       <ArticleCardImage thumbnail={thumbnail} />
       <View style={styles.contentsContainer}>
         <ArticleCardTitle title={title} />

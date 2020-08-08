@@ -43,4 +43,8 @@ public class ArticleViewService {
 
         return ArticleResponse.of(article, favorite.isPresent());
     }
+
+    public SalesDetailsResponse showSalesDetails(Member member, String tradeState) {
+        return null;
+    }
 }
