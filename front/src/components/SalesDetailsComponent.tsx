@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import {
   Animated,
   StyleSheet,
@@ -7,18 +7,27 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import CategoryArticleCard, {CategoryArticleCardProps,} from "./Category/CategoryArticleCard";
 import colors from "../colors";
+import { MiniArticleCardProps, MyPageParamList } from "../types/types";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import MiniArticleCard from "./Common/ArticleCommon/MiniArticleCard";
 
-const ANIMATE_START_VALUE = 0.98;
+const ANIMATE_START_VALUE = 0.93;
+
+type SalesDetails = StackNavigationProp<MyPageParamList, "SalesDetails">;
 
 export default function SalesDetailsComponent({
-                                                title,
-                                                price,
-                                                createdAt,
-                                                additional,
-                                                thumbnail,
-                                              }: CategoryArticleCardProps) {
+  id,
+  title,
+  price,
+  createdTime,
+  favoriteCount,
+  chatCount,
+  thumbnail,
+  tradeState,
+}: MiniArticleCardProps) {
+  const navigation = useNavigation<SalesDetails>();
   const AnimateTouchableWithoutFeedback = Animated.createAnimatedComponent(
     TouchableWithoutFeedback,
   );
@@ -33,27 +42,51 @@ export default function SalesDetailsComponent({
       duration: 150,
       useNativeDriver: true,
     }).start();
+    navigation.navigate("ArticleDetailScreen");
   };
 
   return (
     <AnimateTouchableWithoutFeedback
       onPress={clickArticleAnimate}
-      style={{transform: [{scale: clickValue}]}}
+      style={{ transform: [{ scale: clickValue }] }}
     >
       <View style={styles.salesDetailsComponent}>
-        <CategoryArticleCard
-          title={title}
-          price={price}
-          createdAt={createdAt}
-          additional={additional}
-          thumbnail={thumbnail}
-        />
-        <TouchableOpacity
-          style={styles.salesCompletedContainer}
-          activeOpacity={0.5}
-        >
-          <Text style={styles.salesCompletedText}>거래 완료</Text>
-        </TouchableOpacity>
+        <View style={styles.miniArticleContainer}>
+          <MiniArticleCard
+            id={id}
+            title={title}
+            price={price}
+            createdTime={createdTime}
+            favoriteCount={favoriteCount}
+            chatCount={chatCount}
+            thumbnail={thumbnail}
+            tradeState={tradeState}
+          />
+        </View>
+        {tradeState === "판매 완료" ? (
+          <TouchableOpacity
+            style={styles.salesCompletedContainer}
+            activeOpacity={0.5}
+            onPress={() => navigation.navigate("Evaluation")}
+          >
+            <Text style={styles.salesCompletedText}>구매자 평가</Text>
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.onSaleAndReservationContainer}>
+            <TouchableOpacity
+              style={styles.reservationContainer}
+              activeOpacity={0.5}
+            >
+              <Text style={styles.salesCompletedText}>예약중</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.onSaleContainer}
+              activeOpacity={0.5}
+            >
+              <Text style={styles.salesCompletedText}>판매 완료</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </AnimateTouchableWithoutFeedback>
   );
@@ -63,8 +96,8 @@ const styles = StyleSheet.create({
   salesDetailsComponent: {
     flex: 1,
   },
+  miniArticleContainer: { margin: 5 },
   salesCompletedContainer: {
-    flexDirection: "row",
     backgroundColor: colors.primary,
     justifyContent: "center",
     alignItems: "center",
@@ -72,5 +105,23 @@ const styles = StyleSheet.create({
   },
   salesCompletedText: {
     fontSize: 15,
+  },
+  onSaleAndReservationContainer: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: colors.primary,
+  },
+  reservationContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 8,
+    borderRightWidth: 0.6,
+  },
+  onSaleContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 8,
   },
 });

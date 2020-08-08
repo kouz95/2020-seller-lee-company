@@ -5,7 +5,6 @@ export const defaultArticle = {
   contents: "",
   price: 0,
   createTime: "",
-  tradeLocation: "",
   tradeState: "",
   tags: [],
   photos: [],
