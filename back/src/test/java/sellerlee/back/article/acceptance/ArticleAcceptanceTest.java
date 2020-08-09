@@ -27,6 +27,7 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import sellerlee.back.article.application.ArticleResponse;
 import sellerlee.back.article.application.FeedResponse;
+import sellerlee.back.article.application.SalesDetailsResponse;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ArticleAcceptanceTest {
@@ -77,6 +78,10 @@ public class ArticleAcceptanceTest {
                 dynamicTest("게시글 상세 조회", () -> {
                     ArticleResponse articleResponse = getArticleResponse();
                     assertThat(articleResponse.getId()).isEqualTo(1);
+                }),
+                dynamicTest("예약중|거래중 게시글 조회", () -> {
+                    List<SalesDetailsResponse> salesDetailsResponses = showSalesDetails();
+                    assertThat(salesDetailsResponses).hasSize(3);
                 })
         );
     }
@@ -116,5 +121,17 @@ public class ArticleAcceptanceTest {
                 .then()
                 .log().all()
                 .extract().jsonPath().getList(".", FeedResponse.class);
+    }
+
+    private List<SalesDetailsResponse> showSalesDetails() {
+        String url = ARTICLE_URI + "/tradeState";
+
+        return given().when()
+                .param("tradeState", "예약중|거래중")
+                .get(url)
+                .then()
+                .log().all()
+                .statusCode(HttpStatus.OK.value())
+                .extract().jsonPath().getList(".", SalesDetailsResponse.class);
     }
 }

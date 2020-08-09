@@ -26,7 +26,7 @@ public class ArticleFixture {
             1234L,
             TradeType.DELEVERY,
             null,
-            TradeState.SALING,
+            TradeState.ON_SALE,
             Photos.of("testUri1", "testUri2"),
             MEMBER1);
 
@@ -39,7 +39,7 @@ public class ArticleFixture {
             1234L,
             TradeType.DELEVERY,
             null,
-            TradeState.SALING,
+            TradeState.ON_SALE,
             Photos.of("testUri1", "testUri2"),
             MEMBER1);
 
@@ -52,7 +52,7 @@ public class ArticleFixture {
             1234L,
             TradeType.DELEVERY,
             null,
-            TradeState.SALING,
+            TradeState.ON_SALE,
             Photos.of("testUri1", "testUri2"),
             MEMBER1);
 

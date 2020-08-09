@@ -36,6 +36,7 @@ public class SalesDetailsResponse {
     }
 
     public static SalesDetailsResponse of(Article article, Long favoriteCount, Long chatCount) {
+        System.out.println(article.getId() + " " + article.getPhotos().toString());
         return new SalesDetailsResponse(
                 article.getId(),
                 article.getTitle(),

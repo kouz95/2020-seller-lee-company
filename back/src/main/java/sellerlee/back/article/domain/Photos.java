@@ -28,4 +28,11 @@ public class Photos {
     public List<String> getPhotos() {
         return photos;
     }
+
+    @Override
+    public String toString() {
+        return "Photos{" +
+                "photos=" + photos +
+                '}';
+    }
 }
