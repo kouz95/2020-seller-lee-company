@@ -12,7 +12,7 @@ export default function SalesDetailsScreen() {
   const [salesDetails, setSalesDetails] = useState<MiniArticleCardProps[]>();
 
   const getSalesDetails = async () => {
-    const { data } = await axios.get("/article", {
+    const { data } = await axios.get("/article/tradeState", {
       params: {
         tradeState: "예약중|판매중",
       },

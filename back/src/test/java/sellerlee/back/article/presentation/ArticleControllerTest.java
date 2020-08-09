@@ -93,7 +93,7 @@ class ArticleControllerTest {
     @Test
     void showSalesDetails() throws Exception {
         when(articleViewService.showSalesDetails(any(), any()))
-                .thenReturn(SalesDetailsResponse.of(ARTICLE1, 5L, 3L));
+                .thenReturn(Arrays.asList(SalesDetailsResponse.of(ARTICLE1, 5L, 3L)));
 
         mockMvc.perform(get(ARTICLE_URI + "/tradeState")
                 .param("tradeState", "예약중|판매중"))

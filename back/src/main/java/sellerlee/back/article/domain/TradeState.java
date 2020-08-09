@@ -15,6 +15,10 @@ public enum TradeState {
         this.tradeState = tradeState;
     }
 
+    public static boolean isCompleted(String tradeState) {
+        return TradeState.COMPLETED.tradeState.equals(tradeState);
+    }
+
     public String getTradeState() {
         return tradeState;
     }

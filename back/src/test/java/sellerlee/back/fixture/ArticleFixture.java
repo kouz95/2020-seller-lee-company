@@ -56,6 +56,19 @@ public class ArticleFixture {
             Photos.of("testUri1", "testUri2"),
             MEMBER1);
 
+    public static final Article ARTICLE4 = new Article(
+            53L,
+            "test title1",
+            Tags.of(TAG_FIXTURE),
+            Category.PC,
+            "test contents1",
+            1234L,
+            TradeType.DELEVERY,
+            null,
+            TradeState.COMPLETED,
+            Photos.of("testUri1", "testUri2"),
+            MEMBER1);
+
     public static final ArticleCreateRequest ARTICLE_CREATE_REQUEST_FIXTURE = new ArticleCreateRequest(
             "TEST_TITLE",
             Arrays.asList(TAG_FIXTURE, TAG_FIXTURE2),

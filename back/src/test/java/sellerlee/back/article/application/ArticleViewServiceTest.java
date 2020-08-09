@@ -10,6 +10,9 @@ import static sellerlee.back.fixture.ArticleFixture.*;
 import static sellerlee.back.fixture.FavoriteFixture.*;
 import static sellerlee.back.fixture.MemberFixture.*;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -53,5 +56,33 @@ class ArticleViewServiceTest {
         ArticleResponse articleResponse = articleViewService.showArticle(51L, 52L);
 
         assertThat(articleResponse.getId()).isEqualTo(51L);
+    }
+
+    @DisplayName("Member 의 article 을 tradeState 에 따라 다르게 가져온다 - 판매 완료 일 경우")
+    @Test
+    void showSalesDetailsInCaseCompleted() {
+        when(articleRepository.findAllByAuthorAndTradeState(any(), any())).thenReturn(
+                Collections.singletonList(
+                        ARTICLE4
+                ));
+
+        List<SalesDetailsResponse> salesDetailsResponses = articleViewService.showSalesDetails(
+                MEMBER1, "판매 완료");
+
+        assertThat(salesDetailsResponses).hasSize(1);
+    }
+
+    @DisplayName("Member 의 article 을 tradeState 에 따라 다르게 가져온다 - 판매 완료 일 경우")
+    @Test
+    void showSalesDetailsInCaseNotCompleted() {
+        when(articleRepository.findAllByAuthorAndTradeStateNot(any(), any())).thenReturn(
+                Arrays.asList(
+                        ARTICLE1, ARTICLE2, ARTICLE3
+                ));
+
+        List<SalesDetailsResponse> salesDetailsResponses = articleViewService.showSalesDetails(
+                MEMBER1, "예약중|판매중");
+
+        assertThat(salesDetailsResponses).hasSize(3);
     }
 }

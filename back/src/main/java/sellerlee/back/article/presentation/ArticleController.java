@@ -65,7 +65,7 @@ public class ArticleController {
     }
 
     @GetMapping("/tradeState")
-    public ResponseEntity<SalesDetailsResponse> showSalesDetailsArticle(
+    public ResponseEntity<List<SalesDetailsResponse>> showSalesDetailsArticle(
             @RequestParam String tradeState) {
         Member member = new Member(
                 51L,
@@ -74,9 +74,10 @@ public class ArticleController {
                 "testNickname",
                 "testUri",
                 4.5);
-        SalesDetailsResponse salesDetailsResponse = articleViewService.showSalesDetails(member,
+        List<SalesDetailsResponse> salesDetailsResponses = articleViewService.showSalesDetails(
+                member,
                 tradeState);
 
-        return ResponseEntity.ok(salesDetailsResponse);
+        return ResponseEntity.ok(salesDetailsResponses);
     }
 }
