@@ -35,6 +35,15 @@ public class ArticleAcceptanceTest extends AcceptanceTest {
      * <p>
      * When 전체 게시글을 조회한다.
      * Then 게시글이 조회된다.
+     *
+     * <p>
+     * When 예약중|판매중 상태 게시글을 조회한다.
+     * then 게시글이 조회된다.
+     *
+     * <p>
+     * when 예약중으로 상태를 변경한다.
+     * then 상태가 변경된다.
+     *
      * <p>
      * When 게시글을 클릭한다.
      * Then 게시글 정보와 좋아요를 응답받는다.
@@ -42,11 +51,9 @@ public class ArticleAcceptanceTest extends AcceptanceTest {
      * When 게시글을 삭제한다.
      * Then 게시글이 삭제된다.
      */
-
     @DisplayName("게시글을 관리한다")
     @TestFactory
     Stream<DynamicTest> manageArticle() throws JsonProcessingException {
-        // 게시글을 등록 한다.
         Long articleId = extractId(createArticle());
         Long articleId2 = extractId(createArticle());
         Long articleId3 = extractId(createArticle());
