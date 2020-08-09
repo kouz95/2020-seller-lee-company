@@ -35,6 +35,9 @@ public class ArticleAcceptanceTest extends AcceptanceTest {
      * <p>
      * When 전체 게시글을 조회한다.
      * Then 게시글이 조회된다.
+     * <p>
+     * When 게시글을 클릭한다.
+     * Then 게시글 정보와 좋아요 를 응답받는다.
      */
     @DisplayName("게시글을 관리한다")
     @TestFactory
