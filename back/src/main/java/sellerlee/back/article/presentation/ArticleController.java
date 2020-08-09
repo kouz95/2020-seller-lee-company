@@ -86,11 +86,11 @@ public class ArticleController {
                 "testNickname",
                 "testUri",
                 4.0);
-        List<SalesHistoryResponse> salesHistoryRespons = articleViewService.showSalesDetails(
+        List<SalesHistoryResponse> salesHistoryResponses = articleViewService.showSalesDetails(
                 member,
                 tradeState);
 
-        return ResponseEntity.ok(salesHistoryRespons);
+        return ResponseEntity.ok(salesHistoryResponses);
     }
 
     @PatchMapping("/trade-state")

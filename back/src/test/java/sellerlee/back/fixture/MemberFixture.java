@@ -8,7 +8,7 @@ public class MemberFixture {
     private static final String MEMBER_PASSWORD = "1234";
     private static final String MEMBER_NICKNAME = "testNickname";
     private static final String MEMBER_AVATAR = "testUri";
-    private static final double MEMBER_SCORE = 4.5;
+    private static final double MEMBER_SCORE = 4;
 
     public static final MemberLoginRequest INVALID_PASSWORD_MEMBER_LOGIN_REQUEST_FIXTURE =
             new MemberLoginRequest(
