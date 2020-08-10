@@ -21,13 +21,13 @@ const ANIMATE_START_VALUE = 0.93;
 
 type SalesDetails = StackNavigationProp<MyPageParamList, "SalesDetails">;
 
-export default function SalesDetailsComponent({
+export default function OnSaleAndReservationComponent({
   id,
   title,
   price,
   tradeType,
   location,
-  createdAt,
+  createdTime,
   favoriteCount,
   chatCount,
   thumbnail,
@@ -64,7 +64,7 @@ export default function SalesDetailsComponent({
             price={price}
             tradeType={tradeType}
             location={location}
-            createdAt={createdAt}
+            createdTime={createdTime}
             favoriteCount={favoriteCount}
             chatCount={chatCount}
             thumbnail={thumbnail}

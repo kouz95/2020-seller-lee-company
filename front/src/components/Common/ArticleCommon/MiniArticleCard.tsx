@@ -16,7 +16,7 @@ export default function MiniArticleCard({
   price,
   tradeType,
   location,
-  createdAt,
+  createdTime,
   favoriteCount,
   chatCount,
   thumbnail,
@@ -30,7 +30,7 @@ export default function MiniArticleCard({
         <ArticleCardTradeDetails
           location={location}
           tradeType={tradeType}
-          createdAt={createdAt}
+          createdAt={createdTime}
         />
         <ArticleCardAdditional
           price={price}

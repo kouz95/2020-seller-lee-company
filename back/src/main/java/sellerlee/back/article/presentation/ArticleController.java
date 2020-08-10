@@ -73,7 +73,7 @@ public class ArticleController {
                 "1234",
                 "testNickname",
                 "testUri",
-                4.5);
+                4.0);
         List<SalesDetailsResponse> salesDetailsResponses = articleViewService.showSalesDetails(
                 member,
                 tradeState);
