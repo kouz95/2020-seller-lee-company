@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,7 @@ import sellerlee.back.article.application.ArticleService;
 import sellerlee.back.article.application.ArticleViewService;
 import sellerlee.back.article.application.FeedResponse;
 import sellerlee.back.article.application.SalesDetailsResponse;
+import sellerlee.back.article.application.TradeSatePatchResponse;
 import sellerlee.back.member.domain.Member;
 
 @RestController
@@ -79,5 +81,21 @@ public class ArticleController {
                 tradeState);
 
         return ResponseEntity.ok(salesDetailsResponses);
+    }
+
+    @PatchMapping("/tradeState")
+    public ResponseEntity<SalesDetailsResponse> patchTradeState(
+            @RequestBody TradeSatePatchResponse tradeSatePatchResponse) {
+        Member member = new Member(
+                51L,
+                "turtle@woowabro.com",
+                "1234",
+                "testNickname",
+                "testUri",
+                4.0);
+
+        articleService.patchSalesDetails(member, tradeSatePatchResponse);
+
+        return ResponseEntity.ok().build();
     }
 }

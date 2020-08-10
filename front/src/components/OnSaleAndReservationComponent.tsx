@@ -2,7 +2,7 @@
  * @author joseph415
  */
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Animated,
   StyleSheet,
@@ -16,6 +16,7 @@ import { MiniArticleCardProps, MyPageParamList } from "../types/types";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import MiniArticleCard from "./Common/ArticleCommon/MiniArticleCard";
+import { articlesAPI } from "../api/api";
 
 const ANIMATE_START_VALUE = 0.93;
 
@@ -38,6 +39,8 @@ export default function OnSaleAndReservationComponent({
     TouchableWithoutFeedback,
   );
 
+  const [tradeStateState, setTradeStateState] = useState(tradeState);
+
   const clickValue = useRef(new Animated.Value(1)).current;
 
   const clickArticleAnimate = () => {
@@ -49,6 +52,11 @@ export default function OnSaleAndReservationComponent({
       useNativeDriver: true,
     }).start();
     navigation.navigate("ArticleDetailScreen");
+  };
+
+  const patchTradeState = async (data: string) => {
+    await articlesAPI.patch({ id: id, tradeState: data });
+    setTradeStateState(data);
   };
 
   return (
@@ -68,7 +76,7 @@ export default function OnSaleAndReservationComponent({
             favoriteCount={favoriteCount}
             chatCount={chatCount}
             thumbnail={thumbnail}
-            tradeState={tradeState}
+            tradeState={tradeStateState}
           />
         </View>
         {tradeState === "판매 완료" ? (
@@ -84,12 +92,14 @@ export default function OnSaleAndReservationComponent({
             <TouchableOpacity
               style={styles.reservationContainer}
               activeOpacity={0.5}
+              onPress={() => patchTradeState("예약중")}
             >
               <Text style={styles.salesCompletedText}>예약중</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.onSaleContainer}
               activeOpacity={0.5}
+              onPress={() => patchTradeState("판매 완료")}
             >
               <Text style={styles.salesCompletedText}>판매 완료</Text>
             </TouchableOpacity>

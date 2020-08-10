@@ -4,7 +4,6 @@
 
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { innerContainerMargin } from "./MiniArticleCard";
 
 interface IArticleCardImage {
   thumbnail: string;
@@ -17,6 +16,8 @@ export default function ArticleCardImage({ thumbnail }: IArticleCardImage) {
     </View>
   );
 }
+
+const innerContainerMargin = 13;
 
 const styles = StyleSheet.create({
   imageContainer: {

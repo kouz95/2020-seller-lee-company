@@ -6,12 +6,16 @@ package sellerlee.back.article.application;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import sellerlee.back.article.domain.Article;
 import sellerlee.back.article.domain.ArticleRepository;
+import sellerlee.back.article.domain.TradeState;
+import sellerlee.back.member.domain.Member;
 
 @Service
 public class ArticleService {
@@ -33,5 +37,15 @@ public class ArticleService {
         Page<Article> articlePage = articleRepository.findByIdLessThanOrderByIdDesc(lastArticleId,
                 pageRequest);
         return FeedResponse.listOf(articlePage.getContent());
+    }
+
+    @Transactional
+    public void patchSalesDetails(Member member,
+            TradeSatePatchResponse tradeSatePatchResponse) {
+        Article article = articleRepository.findByAuthorAndId(member,
+                tradeSatePatchResponse.getId())
+                .orElseThrow(() -> new IllegalArgumentException("article 존재하지 않습니다."));
+
+        article.updateState(TradeState.fromString(tradeSatePatchResponse.getTradeState()));
     }
 }

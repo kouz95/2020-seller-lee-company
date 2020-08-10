@@ -42,7 +42,7 @@ export default function MiniArticleCard({
   );
 }
 
-export const innerContainerMargin = 13;
+const innerContainerMargin = 13;
 
 const styles = StyleSheet.create({
   container: {
