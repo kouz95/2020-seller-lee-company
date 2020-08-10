@@ -67,7 +67,7 @@ interface MemberLogin {
 
 export const memberAPI = {
   post: async (data: MemberLogin) =>
-    await axios.post(`${BASE_URL}${domain.login}`, {data}),
+    await axios.post(`${BASE_URL}${domain.login}`, { data }),
 };
 
 export const chatRoomAPI = {
