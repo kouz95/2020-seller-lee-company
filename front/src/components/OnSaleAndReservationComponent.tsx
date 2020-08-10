@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   salesDetailsComponent: {
     flex: 1,
   },
-  miniArticleContainer: {margin: 5},
+  miniArticleContainer: { margin: 5 },
   salesCompletedContainer: {
     backgroundColor: colors.primary,
     justifyContent: "center",

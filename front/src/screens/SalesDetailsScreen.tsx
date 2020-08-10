@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import SalesDetailsComponent from "../components/SalesDetailsComponent";
 import { MiniArticleCardProps } from "../types/types";
+import OnSaleAndReservationComponent from "../components/OnSaleAndReservationComponent";
 import { useIsFocused } from "@react-navigation/native";
 import { articlesAPI } from "../api/api";
 
@@ -28,7 +28,7 @@ export default function SalesDetailsScreen() {
     <FlatList
       data={salesDetails}
       renderItem={({ item }) => (
-        <SalesDetailsComponent
+        <OnSaleAndReservationComponent
           id={item.id}
           title={item.title}
           price={item.price}
