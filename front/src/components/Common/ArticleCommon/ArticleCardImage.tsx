@@ -13,6 +13,8 @@ export default function ArticleCardImage({ thumbnail }: IArticleCardImage) {
   );
 }
 
+const innerContainerMargin = 13;
+
 const styles = StyleSheet.create({
   imageContainer: {
     flex: 4.5,
