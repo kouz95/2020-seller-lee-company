@@ -28,6 +28,7 @@ import io.restassured.specification.RequestSpecification;
 import sellerlee.back.article.application.ArticleResponse;
 import sellerlee.back.article.application.FeedResponse;
 import sellerlee.back.article.application.SalesDetailsResponse;
+import sellerlee.back.article.application.TradeSatePatchResquest;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ArticleAcceptanceTest {
@@ -82,6 +83,12 @@ public class ArticleAcceptanceTest {
                 dynamicTest("예약중|거래중 게시글 조회", () -> {
                     List<SalesDetailsResponse> salesDetailsResponses = showSalesDetails();
                     assertThat(salesDetailsResponses).hasSize(3);
+                }),
+                dynamicTest("예약중 으로 tradeState 변경후 조회", () -> {
+                    patchTradeState();
+                    ArticleResponse articleResponse = getArticleResponse();
+
+                    assertThat(articleResponse.getTradeState()).isEqualTo("예약중");
                 })
         );
     }
@@ -133,5 +140,20 @@ public class ArticleAcceptanceTest {
                 .log().all()
                 .statusCode(HttpStatus.OK.value())
                 .extract().jsonPath().getList(".", SalesDetailsResponse.class);
+    }
+
+    private void patchTradeState() {
+        String url = ARTICLE_URI + "/tradeState";
+
+        TradeSatePatchResquest tradeSatePatchResquest = new TradeSatePatchResquest(1L, "예약중");
+
+        given().when()
+                .body(tradeSatePatchResquest)
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .patch(url)
+                .then()
+                .log().all()
+                .statusCode(HttpStatus.OK.value());
     }
 }

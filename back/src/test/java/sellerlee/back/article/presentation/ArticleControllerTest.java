@@ -1,5 +1,5 @@
 /**
- * @author kouz95
+ * @author joseph415
  */
 
 package sellerlee.back.article.presentation;
@@ -15,6 +15,7 @@ import static sellerlee.back.fixture.ArticleFixture.*;
 import static sellerlee.back.fixture.MemberFixture.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +32,7 @@ import sellerlee.back.article.application.ArticleService;
 import sellerlee.back.article.application.ArticleViewService;
 import sellerlee.back.article.application.FeedResponse;
 import sellerlee.back.article.application.SalesDetailsResponse;
+import sellerlee.back.article.application.TradeSatePatchResquest;
 
 @WebMvcTest(controllers = ArticleController.class)
 class ArticleControllerTest {
@@ -93,10 +95,27 @@ class ArticleControllerTest {
     @Test
     void showSalesDetails() throws Exception {
         when(articleViewService.showSalesDetails(any(), any()))
-                .thenReturn(Arrays.asList(SalesDetailsResponse.of(ARTICLE1, 5L, 3L)));
+                .thenReturn(Collections.singletonList(SalesDetailsResponse.of(ARTICLE1, 5L, 3L)));
 
         mockMvc.perform(get(ARTICLE_URI + "/tradeState")
                 .param("tradeState", "예약중|판매중"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @DisplayName("판매상태를 변경한다.")
+    @Test
+    void patchTradeState() throws Exception {
+        doNothing().when(articleService).patchSalesDetails(any(), any());
+
+        TradeSatePatchResquest tradeSatePatchResquest = new TradeSatePatchResquest(1L, "예약중");
+
+        String request = objectMapper.writeValueAsString(tradeSatePatchResquest);
+
+        mockMvc.perform(patch(ARTICLE_URI + "/tradeState")
+                .content(request)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
     }

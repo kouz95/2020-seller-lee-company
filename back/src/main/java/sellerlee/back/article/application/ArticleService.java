@@ -1,5 +1,5 @@
 /**
- * @author begaonnuri
+ * @author josehp415
  */
 
 package sellerlee.back.article.application;
@@ -41,11 +41,11 @@ public class ArticleService {
 
     @Transactional
     public void patchSalesDetails(Member member,
-            TradeSatePatchResponse tradeSatePatchResponse) {
+            TradeSatePatchResquest tradeSatePatchResquest) {
         Article article = articleRepository.findByAuthorAndId(member,
-                tradeSatePatchResponse.getId())
+                tradeSatePatchResquest.getId())
                 .orElseThrow(() -> new IllegalArgumentException("article 존재하지 않습니다."));
 
-        article.updateState(TradeState.fromString(tradeSatePatchResponse.getTradeState()));
+        article.updateState(TradeState.fromString(tradeSatePatchResquest.getTradeState()));
     }
 }

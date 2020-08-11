@@ -1,5 +1,5 @@
 /**
- * @author begaonnuri
+ * @author joseph415
  */
 
 package sellerlee.back.article.application;
@@ -10,10 +10,12 @@ import static org.mockito.Mockito.*;
 import static sellerlee.back.article.acceptance.ArticleAcceptanceTest.*;
 import static sellerlee.back.article.application.ArticleService.*;
 import static sellerlee.back.fixture.ArticleFixture.*;
+import static sellerlee.back.fixture.MemberFixture.*;
 import static sellerlee.back.fixture.TagFixture.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -73,5 +75,15 @@ class ArticleServiceTest {
 
         assertThat(actualArticles.get(0).getId()).isEqualTo(ARTICLE2.getId());
         assertThat(actualArticles.get(1).getId()).isEqualTo(ARTICLE1.getId());
+    }
+
+    @DisplayName("tradeState를 변경함")
+    @Test
+    void patchTradeState() {
+        when(articleRepository.findByAuthorAndId(any(), any())).thenReturn(Optional.of(ARTICLE1));
+
+        TradeSatePatchResquest tradeSatePatchResquest = new TradeSatePatchResquest(51L, "예약중");
+
+        articleService.patchSalesDetails(MEMBER1, tradeSatePatchResquest);
     }
 }

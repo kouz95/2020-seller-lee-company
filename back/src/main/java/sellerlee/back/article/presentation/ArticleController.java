@@ -1,5 +1,5 @@
 /**
- * @author begaonnuri
+ * @author joseph415
  */
 
 package sellerlee.back.article.presentation;
@@ -25,7 +25,7 @@ import sellerlee.back.article.application.ArticleService;
 import sellerlee.back.article.application.ArticleViewService;
 import sellerlee.back.article.application.FeedResponse;
 import sellerlee.back.article.application.SalesDetailsResponse;
-import sellerlee.back.article.application.TradeSatePatchResponse;
+import sellerlee.back.article.application.TradeSatePatchResquest;
 import sellerlee.back.member.domain.Member;
 
 @RestController
@@ -85,7 +85,7 @@ public class ArticleController {
 
     @PatchMapping("/tradeState")
     public ResponseEntity<SalesDetailsResponse> patchTradeState(
-            @RequestBody TradeSatePatchResponse tradeSatePatchResponse) {
+            @RequestBody TradeSatePatchResquest tradeSatePatchResquest) {
         Member member = new Member(
                 51L,
                 "turtle@woowabro.com",
@@ -94,7 +94,7 @@ public class ArticleController {
                 "testUri",
                 4.0);
 
-        articleService.patchSalesDetails(member, tradeSatePatchResponse);
+        articleService.patchSalesDetails(member, tradeSatePatchResquest);
 
         return ResponseEntity.ok().build();
     }

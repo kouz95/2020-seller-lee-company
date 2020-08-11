@@ -80,4 +80,5 @@ public class ArticleFixture {
             Arrays.asList("testUri1", "testUri2"),
             MEMBER1.getId()
     );
+
 }
