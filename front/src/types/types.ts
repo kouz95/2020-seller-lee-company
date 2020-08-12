@@ -165,7 +165,7 @@ export type MyPageParamList = {
   Evaluation: undefined;
 };
 
-export interface MiniArticleCardProps {
+export interface ArticleCardProps {
   id: number;
   title: string;
   price: number;

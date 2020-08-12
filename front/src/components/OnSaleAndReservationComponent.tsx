@@ -8,10 +8,10 @@ import {
   View,
 } from "react-native";
 import colors from "../colors";
-import {MiniArticleCardProps, MyPageParamList} from "../types/types";
+import {ArticleCardProps, MyPageParamList} from "../types/types";
 import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
-import MiniArticleCard from "./Common/ArticleCommon/MiniArticleCard";
+import ArticleCard from "./Common/ArticleCommon/ArticleCard";
 import {articlesAPI} from "../api/api";
 import {COMPLETED, RESERVATION} from "../screens/SalesDetailsScreen";
 
@@ -28,7 +28,7 @@ export default function OnSaleAndReservationComponent({
                                                         chatCount,
                                                         thumbnail,
                                                         tradeState,
-                                                      }: MiniArticleCardProps) {
+                                                      }: ArticleCardProps) {
   const navigation = useNavigation<SalesDetails>();
   const AnimateTouchableWithoutFeedback = Animated.createAnimatedComponent(
     TouchableWithoutFeedback,
@@ -63,7 +63,7 @@ export default function OnSaleAndReservationComponent({
     >
       <View style={styles.salesDetailsComponent}>
         <View style={styles.miniArticleContainer}>
-          <MiniArticleCard
+          <ArticleCard
             id={id}
             title={title}
             price={price}
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   salesDetailsComponent: {
     flex: 1,
   },
-  miniArticleContainer: { margin: 5 },
+  miniArticleContainer: {margin: 5},
   salesCompletedContainer: {
     backgroundColor: colors.primary,
     justifyContent: "center",

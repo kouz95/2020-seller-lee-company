@@ -100,10 +100,6 @@ public class Article extends BaseTimeEntity {
         this.tradeState = tradeState;
     }
 
-    public void updateState(TradeState tradeState) {
-        this.tradeState = tradeState;
-    }
-
     public Long getId() {
         return id;
     }
