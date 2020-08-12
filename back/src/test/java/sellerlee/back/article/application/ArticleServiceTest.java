@@ -82,8 +82,8 @@ class ArticleServiceTest {
     void patchTradeState() {
         when(articleRepository.findByAuthorAndId(any(), any())).thenReturn(Optional.of(ARTICLE1));
 
-        TradeSatePatchResquest tradeSatePatchResquest = new TradeSatePatchResquest(51L, "예약중");
+        TradeSatePatchRequest tradeSatePatchRequest = new TradeSatePatchRequest(51L, "예약중");
 
-        articleService.patchSalesDetails(MEMBER1, tradeSatePatchResquest);
+        articleService.updateTradeState(MEMBER1, tradeSatePatchRequest);
     }
 }

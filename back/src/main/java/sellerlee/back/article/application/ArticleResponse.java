@@ -21,7 +21,7 @@ public class ArticleResponse {
     private String tradeState;
     private List<String> photos;
     private MemberResponse author;
-    private Boolean favoriteState;
+    private boolean favoriteState;
     private LocalDateTime createdTime;
 
     private ArticleResponse() {
@@ -29,7 +29,7 @@ public class ArticleResponse {
 
     public ArticleResponse(Long id, String title, String category, String contents,
             Long price, String tradeType, String tradeLocation, String tradeState,
-            List<String> photos, MemberResponse author, Boolean favoriteState,
+            List<String> photos, MemberResponse author, boolean favoriteState,
             LocalDateTime createdTime) {
         this.id = id;
         this.title = title;
@@ -102,7 +102,7 @@ public class ArticleResponse {
         return author;
     }
 
-    public Boolean getFavoriteState() {
+    public boolean getFavoriteState() {
         return favoriteState;
     }
 

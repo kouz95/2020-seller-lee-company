@@ -5,7 +5,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-export default function EvaluationBuyerScreen() {
+export default function EvaluationScreen() {
   return (
     <View>
       <Text>.</Text>

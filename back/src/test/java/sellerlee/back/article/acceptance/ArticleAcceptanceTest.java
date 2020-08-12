@@ -28,7 +28,7 @@ import io.restassured.specification.RequestSpecification;
 import sellerlee.back.article.application.ArticleResponse;
 import sellerlee.back.article.application.FeedResponse;
 import sellerlee.back.article.application.SalesDetailsResponse;
-import sellerlee.back.article.application.TradeSatePatchResquest;
+import sellerlee.back.article.application.TradeSatePatchRequest;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ArticleAcceptanceTest {
@@ -81,8 +81,11 @@ public class ArticleAcceptanceTest {
                     assertThat(articleResponse.getId()).isEqualTo(1);
                 }),
                 dynamicTest("예약중|거래중 게시글 조회", () -> {
+                    //given
+                    createArticle();
+                    //then
                     List<SalesDetailsResponse> salesDetailsResponses = showSalesDetails();
-                    assertThat(salesDetailsResponses).hasSize(3);
+                    assertThat(salesDetailsResponses).hasSize(2);
                 }),
                 dynamicTest("예약중 으로 tradeState 변경후 조회", () -> {
                     patchTradeState();
@@ -131,7 +134,7 @@ public class ArticleAcceptanceTest {
     }
 
     private List<SalesDetailsResponse> showSalesDetails() {
-        String url = ARTICLE_URI + "/tradeState";
+        String url = ARTICLE_URI + "/trade-state";
 
         return given().when()
                 .param("tradeState", "예약중|거래중")
@@ -143,12 +146,12 @@ public class ArticleAcceptanceTest {
     }
 
     private void patchTradeState() {
-        String url = ARTICLE_URI + "/tradeState";
+        String url = ARTICLE_URI + "/trade-state";
 
-        TradeSatePatchResquest tradeSatePatchResquest = new TradeSatePatchResquest(1L, "예약중");
+        TradeSatePatchRequest tradeSatePatchRequest = new TradeSatePatchRequest(1L, "예약중");
 
         given().when()
-                .body(tradeSatePatchResquest)
+                .body(tradeSatePatchRequest)
                 .accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .patch(url)

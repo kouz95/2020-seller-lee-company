@@ -47,17 +47,26 @@ public class ArticleViewService {
         return ArticleResponse.of(article, favorite.isPresent());
     }
 
+    @Transactional(readOnly = true)
     public List<SalesDetailsResponse> showSalesDetails(Member member, String tradeState) {
         if (TradeState.isCompleted(tradeState)) {
-            List<Article> articles = articleRepository.findAllByAuthorAndTradeState(member,
-                    TradeState.COMPLETED);
+            List<Article> articles = getTradeCompletedBy(member);
 
             return getSalesDetailsResponses(articles, 3L);
         }
-        List<Article> articles = articleRepository.findAllByAuthorAndTradeStateNot(member,
-                TradeState.COMPLETED);
+        List<Article> articles = getTradeNotCompletedBy(member);
 
         return getSalesDetailsResponses(articles, 3L);
+    }
+
+    private List<Article> getTradeNotCompletedBy(Member member) {
+        return articleRepository.findAllByAuthorAndTradeStateNot(member,
+                TradeState.COMPLETED);
+    }
+
+    private List<Article> getTradeCompletedBy(Member member) {
+        return articleRepository.findAllByAuthorAndTradeState(member,
+                TradeState.COMPLETED);
     }
 
     private List<SalesDetailsResponse> getSalesDetailsResponses(List<Article> articles,

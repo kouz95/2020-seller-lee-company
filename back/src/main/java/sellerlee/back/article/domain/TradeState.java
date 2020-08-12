@@ -26,7 +26,7 @@ public enum TradeState {
     }
 
     public static boolean isCompleted(String tradeState) {
-        return TradeState.COMPLETED.tradeState.equals(tradeState);
+        return COMPLETED.tradeState.equals(tradeState);
     }
 
     public String getTradeState() {

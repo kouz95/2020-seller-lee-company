@@ -40,12 +40,16 @@ public class ArticleService {
     }
 
     @Transactional
-    public void patchSalesDetails(Member member,
-            TradeSatePatchResquest tradeSatePatchResquest) {
-        Article article = articleRepository.findByAuthorAndId(member,
-                tradeSatePatchResquest.getId())
-                .orElseThrow(() -> new IllegalArgumentException("article 존재하지 않습니다."));
+    public void updateTradeState(Member member,
+            TradeSatePatchRequest tradeSatePatchRequest) {
+        Article article = getArticleByAuthorAndTradeState(member, tradeSatePatchRequest);
+        article.updateState(TradeState.fromString(tradeSatePatchRequest.getTradeState()));
+    }
 
-        article.updateState(TradeState.fromString(tradeSatePatchResquest.getTradeState()));
+    private Article getArticleByAuthorAndTradeState(Member member,
+            TradeSatePatchRequest tradeSatePatchRequest) {
+        return articleRepository.findByAuthorAndId(member,
+                tradeSatePatchRequest.getId())
+                .orElseThrow(() -> new IllegalArgumentException("article 존재하지 않습니다."));
     }
 }

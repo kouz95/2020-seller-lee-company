@@ -183,7 +183,7 @@ export type MyPageParamList = {
   MyPage: undefined;
   SalesDetails: undefined;
   ArticleDetailScreen: undefined;
-  EvaluationBuyer: undefined;
+  Evaluation: undefined;
 };
 
 export interface MiniArticleCardProps {

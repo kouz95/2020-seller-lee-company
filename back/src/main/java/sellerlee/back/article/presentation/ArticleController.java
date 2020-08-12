@@ -25,7 +25,7 @@ import sellerlee.back.article.application.ArticleService;
 import sellerlee.back.article.application.ArticleViewService;
 import sellerlee.back.article.application.FeedResponse;
 import sellerlee.back.article.application.SalesDetailsResponse;
-import sellerlee.back.article.application.TradeSatePatchResquest;
+import sellerlee.back.article.application.TradeSatePatchRequest;
 import sellerlee.back.member.domain.Member;
 
 @RestController
@@ -66,9 +66,10 @@ public class ArticleController {
         return ResponseEntity.ok(articleResponse);
     }
 
-    @GetMapping("/tradeState")
+    @GetMapping("/trade-state")
     public ResponseEntity<List<SalesDetailsResponse>> showSalesDetailsArticle(
             @RequestParam String tradeState) {
+        // TODO: 2020/08/12 로그인생기면 없어질 member 
         Member member = new Member(
                 51L,
                 "turtle@woowabro.com",
@@ -83,9 +84,10 @@ public class ArticleController {
         return ResponseEntity.ok(salesDetailsResponses);
     }
 
-    @PatchMapping("/tradeState")
+    @PatchMapping("/trade-state")
     public ResponseEntity<SalesDetailsResponse> patchTradeState(
-            @RequestBody TradeSatePatchResquest tradeSatePatchResquest) {
+            @RequestBody TradeSatePatchRequest tradeSatePatchRequest) {
+        // TODO: 2020/08/12 로그인생기면 없어질 member
         Member member = new Member(
                 51L,
                 "turtle@woowabro.com",
@@ -94,7 +96,7 @@ public class ArticleController {
                 "testUri",
                 4.0);
 
-        articleService.patchSalesDetails(member, tradeSatePatchResquest);
+        articleService.updateTradeState(member, tradeSatePatchRequest);
 
         return ResponseEntity.ok().build();
     }

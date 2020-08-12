@@ -8,7 +8,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:8080";
 const domain = {
   article: "/articles",
-  tradeState: "/tradeState",
+  tradeState: "/trade-state",
   members: "/members",
   login: "/login",
 };
@@ -28,8 +28,8 @@ interface ArticlesGet {
   size: number;
 }
 
-interface TradeStatePatch {
-  id: number;
+interface TradeState {
+  id?: number;
   tradeState: string;
 }
 
@@ -38,7 +38,11 @@ export const articlesAPI = {
     await axios.get(BASE_URL + domain.article, { params }),
   post: async (data: ArticlesPost) =>
     await axios.post(BASE_URL + domain.article, data),
-  patch: async (data: TradeStatePatch) =>
+  getByTradeState: async (params: TradeState) =>
+    await axios.get(BASE_URL + domain.article + domain.tradeState, {
+      params,
+    }),
+  updateTradeState: async (data: TradeState) =>
     await axios.patch(BASE_URL + domain.article + domain.tradeState, data),
 };
 

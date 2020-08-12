@@ -32,7 +32,7 @@ import sellerlee.back.article.application.ArticleService;
 import sellerlee.back.article.application.ArticleViewService;
 import sellerlee.back.article.application.FeedResponse;
 import sellerlee.back.article.application.SalesDetailsResponse;
-import sellerlee.back.article.application.TradeSatePatchResquest;
+import sellerlee.back.article.application.TradeSatePatchRequest;
 
 @WebMvcTest(controllers = ArticleController.class)
 class ArticleControllerTest {
@@ -106,11 +106,11 @@ class ArticleControllerTest {
     @DisplayName("판매상태를 변경한다.")
     @Test
     void patchTradeState() throws Exception {
-        doNothing().when(articleService).patchSalesDetails(any(), any());
+        doNothing().when(articleService).updateTradeState(any(), any());
 
-        TradeSatePatchResquest tradeSatePatchResquest = new TradeSatePatchResquest(1L, "예약중");
+        TradeSatePatchRequest tradeSatePatchRequest = new TradeSatePatchRequest(1L, "예약중");
 
-        String request = objectMapper.writeValueAsString(tradeSatePatchResquest);
+        String request = objectMapper.writeValueAsString(tradeSatePatchRequest);
 
         mockMvc.perform(patch(ARTICLE_URI + "/tradeState")
                 .content(request)

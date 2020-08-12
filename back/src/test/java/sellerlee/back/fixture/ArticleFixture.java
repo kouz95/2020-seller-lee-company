@@ -57,7 +57,7 @@ public class ArticleFixture {
             MEMBER1);
 
     public static final Article ARTICLE4 = new Article(
-            53L,
+            54L,
             "test title1",
             Tags.of(TAG_FIXTURE),
             Category.PC,

@@ -6,26 +6,27 @@ import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import OnSaleAndReservationComponent from "../components/OnSaleAndReservationComponent";
 import { MiniArticleCardProps } from "../types/types";
-import axios from "axios";
+import { articlesAPI } from "../api/api";
+import { useIsFocused } from "@react-navigation/native";
+
+export const ON_SALE = "판매중";
+export const RESERVATION = "예약중";
+export const COMPLETED = "판매 완료";
 
 export default function SalesDetailsScreen() {
   const [salesDetails, setSalesDetails] = useState<MiniArticleCardProps[]>();
 
   const getSalesDetails = async () => {
-    const { data } = await axios.get(
-      "http://localhost:8080/articles/tradeState",
-      {
-        params: {
-          tradeState: "예약중|판매중",
-        },
-      },
-    );
+    const { data } = await articlesAPI.getByTradeState({
+      tradeState: `${ON_SALE}|${RESERVATION}`,
+    });
     setSalesDetails([...data]);
   };
 
+  const isFocused = useIsFocused();
   useEffect(() => {
     getSalesDetails().catch((reason) => console.warn(reason));
-  }, []);
+  }, [isFocused]);
 
   return (
     <FlatList
