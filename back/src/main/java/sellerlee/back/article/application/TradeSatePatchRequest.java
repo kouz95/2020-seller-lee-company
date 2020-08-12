@@ -1,13 +1,13 @@
 package sellerlee.back.article.application;
 
-public class TradeSatePatchResquest {
+public class TradeSatePatchRequest {
     private Long id;
     private String tradeState;
 
-    public TradeSatePatchResquest() {
+    private TradeSatePatchRequest() {
     }
 
-    public TradeSatePatchResquest(Long id, String tradeState) {
+    public TradeSatePatchRequest(Long id, String tradeState) {
         this.id = id;
         this.tradeState = tradeState;
     }

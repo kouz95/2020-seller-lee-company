@@ -17,10 +17,10 @@ public class SalesDetailsResponse {
     private String thumbnail;
     private String tradeState;
 
-    public SalesDetailsResponse() {
+    private SalesDetailsResponse() {
     }
 
-    public SalesDetailsResponse(Long id, String title, Long price, String tradeType,
+    private SalesDetailsResponse(Long id, String title, Long price, String tradeType,
             String location, LocalDateTime createdTime, Long favoriteCount, Long chatCount,
             String thumbnail, String tradeState) {
         this.id = id;
@@ -36,7 +36,6 @@ public class SalesDetailsResponse {
     }
 
     public static SalesDetailsResponse of(Article article, Long favoriteCount, Long chatCount) {
-        System.out.println(article.getId() + " " + article.getPhotos().toString());
         return new SalesDetailsResponse(
                 article.getId(),
                 article.getTitle(),
