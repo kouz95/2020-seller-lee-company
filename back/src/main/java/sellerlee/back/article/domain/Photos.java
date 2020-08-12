@@ -55,11 +55,5 @@ public class Photos {
     public int hashCode() {
         return Objects.hash(photos);
     }
-
-    @Override
-    public String toString() {
-        return "Photos{" +
-                "photos=" + photos +
-                '}';
-    }
+    
 }

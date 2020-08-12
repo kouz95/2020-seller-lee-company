@@ -1,10 +1,6 @@
-/**
- * @author joseph415
- */
-
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { ArticleCardProps } from "../../../types/types";
+import {StyleSheet, View} from "react-native";
+import {ArticleCardProps} from "../../../types/types";
 import ArticleCardImage from "./ArticleCardImage";
 import ArticleCardTitle from "./ArticleCardTitle";
 import ArticleCardTradeDetails from "./ArticleCardTradeDetails";
@@ -13,8 +9,6 @@ import ArticleCardAdditional from "./ArticleCardAdditional";
 export default function ArticleCard({
   title,
   price,
-  tradeType,
-  location,
   createdTime,
   favoriteCount,
   chatCount,
@@ -28,8 +22,6 @@ export default function ArticleCard({
       <View style={styles.contentsContainer}>
         <ArticleCardTitle title={title} />
         <ArticleCardTradeDetails
-          location={location}
-          tradeType={tradeType}
           createdTime={createdTime}
         />
         <ArticleCardAdditional
