@@ -27,7 +27,7 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public Long post(ArticleCreateRequest request) {
+    public Long create(ArticleCreateRequest request) {
         Article article = articleRepository.save(request.toArticle());
         return article.getId();
     }
@@ -41,15 +41,15 @@ public class ArticleService {
 
     @Transactional
     public void updateTradeState(Member member,
-            TradeSatePatchRequest tradeSatePatchRequest) {
-        Article article = getArticleByAuthorAndTradeState(member, tradeSatePatchRequest);
-        article.updateState(TradeState.fromString(tradeSatePatchRequest.getTradeState()));
+            TradeSateUpdateRequest tradeSateUpdateRequest) {
+        Article article = getArticleByAuthorAndTradeState(member, tradeSateUpdateRequest);
+        article.updateState(TradeState.fromString(tradeSateUpdateRequest.getTradeState()));
     }
 
     private Article getArticleByAuthorAndTradeState(Member member,
-            TradeSatePatchRequest tradeSatePatchRequest) {
+            TradeSateUpdateRequest tradeSateUpdateRequest) {
         return articleRepository.findByAuthorAndId(member,
-                tradeSatePatchRequest.getId())
+                tradeSateUpdateRequest.getId())
                 .orElseThrow(() -> new IllegalArgumentException("article 존재하지 않습니다."));
     }
 }

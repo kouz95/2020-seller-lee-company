@@ -24,8 +24,8 @@ import sellerlee.back.article.application.ArticleResponse;
 import sellerlee.back.article.application.ArticleService;
 import sellerlee.back.article.application.ArticleViewService;
 import sellerlee.back.article.application.FeedResponse;
-import sellerlee.back.article.application.SalesDetailsResponse;
-import sellerlee.back.article.application.TradeSatePatchRequest;
+import sellerlee.back.article.application.TradeSateUpdateRequest;
+import sellerlee.back.article.application.salesHistoryResponse;
 import sellerlee.back.member.domain.Member;
 
 @RestController
@@ -44,7 +44,7 @@ public class ArticleController {
 
     @PostMapping
     public ResponseEntity<Void> post(@RequestBody ArticleCreateRequest request) {
-        Long articleId = articleService.post(request);
+        Long articleId = articleService.create(request);
         return ResponseEntity
                 .created(URI.create(ARTICLE_URI + "/" + articleId))
                 .build();
@@ -67,7 +67,7 @@ public class ArticleController {
     }
 
     @GetMapping("/trade-state")
-    public ResponseEntity<List<SalesDetailsResponse>> showSalesDetailsArticle(
+    public ResponseEntity<List<salesHistoryResponse>> showSalesDetailsArticle(
             @RequestParam String tradeState) {
         // TODO: 2020/08/12 로그인생기면 없어질 member 
         Member member = new Member(
@@ -77,16 +77,16 @@ public class ArticleController {
                 "testNickname",
                 "testUri",
                 4.0);
-        List<SalesDetailsResponse> salesDetailsResponses = articleViewService.showSalesDetails(
+        List<salesHistoryResponse> salesHistoryRespons = articleViewService.showSalesDetails(
                 member,
                 tradeState);
 
-        return ResponseEntity.ok(salesDetailsResponses);
+        return ResponseEntity.ok(salesHistoryRespons);
     }
 
     @PatchMapping("/trade-state")
-    public ResponseEntity<SalesDetailsResponse> patchTradeState(
-            @RequestBody TradeSatePatchRequest tradeSatePatchRequest) {
+    public ResponseEntity<salesHistoryResponse> updateTradeState(
+            @RequestBody TradeSateUpdateRequest tradeSateUpdateRequest) {
         // TODO: 2020/08/12 로그인생기면 없어질 member
         Member member = new Member(
                 51L,
@@ -96,7 +96,7 @@ public class ArticleController {
                 "testUri",
                 4.0);
 
-        articleService.updateTradeState(member, tradeSatePatchRequest);
+        articleService.updateTradeState(member, tradeSateUpdateRequest);
 
         return ResponseEntity.ok().build();
     }

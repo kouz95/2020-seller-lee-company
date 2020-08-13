@@ -31,8 +31,8 @@ import sellerlee.back.article.application.ArticleResponse;
 import sellerlee.back.article.application.ArticleService;
 import sellerlee.back.article.application.ArticleViewService;
 import sellerlee.back.article.application.FeedResponse;
-import sellerlee.back.article.application.SalesDetailsResponse;
-import sellerlee.back.article.application.TradeSatePatchRequest;
+import sellerlee.back.article.application.TradeSateUpdateRequest;
+import sellerlee.back.article.application.salesHistoryResponse;
 
 @WebMvcTest(controllers = ArticleController.class)
 class ArticleControllerTest {
@@ -56,7 +56,7 @@ class ArticleControllerTest {
     void createArticle() throws Exception {
         String request = objectMapper.writeValueAsString(ARTICLE_CREATE_REQUEST_FIXTURE);
 
-        when(articleService.post(any())).thenReturn(1L);
+        when(articleService.create(any())).thenReturn(1L);
 
         this.mockMvc.perform(post(ARTICLE_URI)
                 .content(request)
@@ -95,7 +95,7 @@ class ArticleControllerTest {
     @Test
     void showSalesDetails() throws Exception {
         when(articleViewService.showSalesDetails(any(), any()))
-                .thenReturn(Collections.singletonList(SalesDetailsResponse.of(ARTICLE1, 5L, 3L)));
+                .thenReturn(Collections.singletonList(salesHistoryResponse.of(ARTICLE1, 5L, 3L)));
 
         mockMvc.perform(get(ARTICLE_URI + "/tradeState")
                 .param("tradeState", "예약중|판매중"))
@@ -108,9 +108,9 @@ class ArticleControllerTest {
     void patchTradeState() throws Exception {
         doNothing().when(articleService).updateTradeState(any(), any());
 
-        TradeSatePatchRequest tradeSatePatchRequest = new TradeSatePatchRequest(1L, "예약중");
+        TradeSateUpdateRequest tradeSateUpdateRequest = new TradeSateUpdateRequest(1L, "예약중");
 
-        String request = objectMapper.writeValueAsString(tradeSatePatchRequest);
+        String request = objectMapper.writeValueAsString(tradeSateUpdateRequest);
 
         mockMvc.perform(patch(ARTICLE_URI + "/tradeState")
                 .content(request)

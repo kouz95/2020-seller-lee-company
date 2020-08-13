@@ -27,8 +27,8 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import sellerlee.back.article.application.ArticleResponse;
 import sellerlee.back.article.application.FeedResponse;
-import sellerlee.back.article.application.SalesDetailsResponse;
-import sellerlee.back.article.application.TradeSatePatchRequest;
+import sellerlee.back.article.application.TradeSateUpdateRequest;
+import sellerlee.back.article.application.salesHistoryResponse;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ArticleAcceptanceTest {
@@ -84,11 +84,11 @@ public class ArticleAcceptanceTest {
                     //given
                     createArticle();
                     //then
-                    List<SalesDetailsResponse> salesDetailsResponses = showSalesDetails();
-                    assertThat(salesDetailsResponses).hasSize(2);
+                    List<salesHistoryResponse> salesHistoryRespons = showSalesDetails();
+                    assertThat(salesHistoryRespons).hasSize(2);
                 }),
                 dynamicTest("예약중 으로 tradeState 변경후 조회", () -> {
-                    patchTradeState();
+                    updateTradeState();
                     ArticleResponse articleResponse = getArticleResponse();
 
                     assertThat(articleResponse.getTradeState()).isEqualTo("예약중");
@@ -133,7 +133,7 @@ public class ArticleAcceptanceTest {
                 .extract().jsonPath().getList(".", FeedResponse.class);
     }
 
-    private List<SalesDetailsResponse> showSalesDetails() {
+    private List<salesHistoryResponse> showSalesDetails() {
         String url = ARTICLE_URI + "/trade-state";
 
         return given().when()
@@ -142,16 +142,16 @@ public class ArticleAcceptanceTest {
                 .then()
                 .log().all()
                 .statusCode(HttpStatus.OK.value())
-                .extract().jsonPath().getList(".", SalesDetailsResponse.class);
+                .extract().jsonPath().getList(".", salesHistoryResponse.class);
     }
 
-    private void patchTradeState() {
+    private void updateTradeState() {
         String url = ARTICLE_URI + "/trade-state";
 
-        TradeSatePatchRequest tradeSatePatchRequest = new TradeSatePatchRequest(1L, "예약중");
+        TradeSateUpdateRequest tradeSateUpdateRequest = new TradeSateUpdateRequest(1L, "예약중");
 
         given().when()
-                .body(tradeSatePatchRequest)
+                .body(tradeSateUpdateRequest)
                 .accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .patch(url)

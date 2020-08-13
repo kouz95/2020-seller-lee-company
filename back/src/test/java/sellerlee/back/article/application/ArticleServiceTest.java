@@ -57,7 +57,7 @@ class ArticleServiceTest {
                 1L);
         when(articleRepository.save(any())).thenReturn(ARTICLE1);
 
-        Long actualId = articleService.post(request);
+        Long actualId = articleService.create(request);
 
         assertThat(actualId).isEqualTo(ARTICLE1.getId());
     }
@@ -82,8 +82,8 @@ class ArticleServiceTest {
     void patchTradeState() {
         when(articleRepository.findByAuthorAndId(any(), any())).thenReturn(Optional.of(ARTICLE1));
 
-        TradeSatePatchRequest tradeSatePatchRequest = new TradeSatePatchRequest(51L, "예약중");
+        TradeSateUpdateRequest tradeSateUpdateRequest = new TradeSateUpdateRequest(51L, "예약중");
 
-        articleService.updateTradeState(MEMBER1, tradeSatePatchRequest);
+        articleService.updateTradeState(MEMBER1, tradeSateUpdateRequest);
     }
 }

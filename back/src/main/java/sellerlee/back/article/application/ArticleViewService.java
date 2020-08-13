@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import sellerlee.back.article.domain.Article;
 import sellerlee.back.article.domain.ArticleRepository;
@@ -33,7 +32,6 @@ public class ArticleViewService {
         this.favoriteRepository = favoriteRepository;
     }
 
-    @Transactional(readOnly = true)
     public ArticleResponse showArticle(Long articleId, Long memberId) {
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
@@ -47,8 +45,7 @@ public class ArticleViewService {
         return ArticleResponse.of(article, favorite.isPresent());
     }
 
-    @Transactional(readOnly = true)
-    public List<SalesDetailsResponse> showSalesDetails(Member member, String tradeState) {
+    public List<salesHistoryResponse> showSalesDetails(Member member, String tradeState) {
         if (TradeState.isCompleted(tradeState)) {
             List<Article> articles = getTradeCompletedBy(member);
 
@@ -69,10 +66,10 @@ public class ArticleViewService {
                 TradeState.COMPLETED);
     }
 
-    private List<SalesDetailsResponse> getSalesDetailsResponses(List<Article> articles,
+    private List<salesHistoryResponse> getSalesDetailsResponses(List<Article> articles,
             Long chatCount) {
         return articles.stream()
-                .map(article -> SalesDetailsResponse.of(article,
+                .map(article -> salesHistoryResponse.of(article,
                         favoriteRepository.countAllByArticle(article), chatCount))
                 .collect(Collectors.toList());
     }
