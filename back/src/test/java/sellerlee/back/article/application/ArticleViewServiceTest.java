@@ -114,10 +114,10 @@ class ArticleViewServiceTest {
                         ARTICLE1, ARTICLE2, ARTICLE3
                 ));
 
-        List<SalesHistoryResponse> salesHistoryRespons = articleViewService.showSalesDetails(
+        List<SalesHistoryResponse> salesHistoryResponse = articleViewService.showSalesDetails(
                 MEMBER1, "예약중|판매중");
 
-        assertThat(salesHistoryRespons).hasSize(3);
+        assertThat(salesHistoryResponse).hasSize(3);
     }
     // @DisplayName("판매 상태로 게시글을 요청한 경우 해당 상태의 게시글 반환")
     // @Test

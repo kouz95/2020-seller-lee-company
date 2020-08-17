@@ -55,5 +55,5 @@ public class Photos {
     public int hashCode() {
         return Objects.hash(photos);
     }
-    
+
 }

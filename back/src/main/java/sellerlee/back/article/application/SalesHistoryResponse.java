@@ -4,8 +4,7 @@ import java.time.LocalDateTime;
 
 import sellerlee.back.article.domain.Article;
 
-public class SalesDetailsResponse {
-    private static final int THUMB_NAIL = 0;
+public class SalesHistoryResponse {
     private Long id;
     private String title;
     private Long price;
@@ -15,10 +14,10 @@ public class SalesDetailsResponse {
     private String thumbnail;
     private String tradeState;
 
-    private SalesDetailsResponse() {
+    private SalesHistoryResponse() {
     }
 
-    private SalesDetailsResponse(Long id, String title, Long price, LocalDateTime createdTime,
+    private SalesHistoryResponse(Long id, String title, Long price, LocalDateTime createdTime,
             Long favoriteCount, Long chatCount,
             String thumbnail, String tradeState) {
         this.id = id;
@@ -31,15 +30,15 @@ public class SalesDetailsResponse {
         this.tradeState = tradeState;
     }
 
-    public static SalesDetailsResponse of(Article article, Long favoriteCount, Long chatCount) {
-        return new SalesDetailsResponse(
+    public static SalesHistoryResponse of(Article article, Long favoriteCount, Long chatCount) {
+        return new SalesHistoryResponse(
                 article.getId(),
                 article.getTitle(),
                 article.getPrice(),
                 article.getCreatedTime(),
                 favoriteCount,
                 chatCount,
-                article.getPhotos().getPhotos().get(THUMB_NAIL),
+                article.getPhotos().pickThumbnail(),
                 article.getTradeState().getTradeState()
         );
     }

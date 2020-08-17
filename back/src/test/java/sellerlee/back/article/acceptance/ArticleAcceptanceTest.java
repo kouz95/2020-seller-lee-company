@@ -74,8 +74,8 @@ public class ArticleAcceptanceTest extends AcceptanceTest {
                     assertThat(salesHistoryResponses).hasSize(4);
                 }),
                 dynamicTest("예약중 으로 tradeState 변경후 조회", () -> {
-                    updateTradeState();
-                    ArticleResponse articleResponse = getArticleResponse();
+                    updateTradeState(articleId);
+                    ArticleResponse articleResponse = getArticleResponse(articleId);
 
                     assertThat(articleResponse.getTradeState()).isEqualTo("예약중");
                 }),
@@ -84,8 +84,8 @@ public class ArticleAcceptanceTest extends AcceptanceTest {
                 }));
     }
 
-    private ArticleResponse getArticleResponse() {
-        String url = ARTICLE_URI + "/1";
+    private ArticleResponse getArticleResponse(Long id) {
+        String url = ARTICLE_URI + "/" + id;
 
         return given()
                 .when()
@@ -156,10 +156,11 @@ public class ArticleAcceptanceTest extends AcceptanceTest {
         // @formatter:on
     }
 
-    private void updateTradeState() {
+    private void updateTradeState(Long articleId) {
         String url = ARTICLE_URI + "/trade-state";
 
-        TradeSateUpdateRequest tradeSateUpdateRequest = new TradeSateUpdateRequest(1L, "예약중");
+        TradeSateUpdateRequest tradeSateUpdateRequest = new TradeSateUpdateRequest(articleId,
+                "예약중");
 
         // @formatter:off
         given()

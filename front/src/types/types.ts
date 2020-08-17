@@ -1,6 +1,6 @@
-import {RouteProp} from "@react-navigation/native";
-import {StackNavigationProp} from "@react-navigation/stack";
-import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
+import { RouteProp } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
 export type TabParamList = {
   Home: undefined;
@@ -89,7 +89,6 @@ export type ArticleContentsFormScreenNavigationProp = StackNavigationProp<
   ArticleFormParamList,
   "ArticleContentsFormScreen"
 >;
-
 export type ProfileParamList = {
   PurchaseScreen: undefined;
 };
@@ -208,6 +207,7 @@ export type MyPageParamList = {
   Evaluation: undefined;
 };
 
+
 export type MyPageNavigationProps = StackNavigationProp<
   MyPageParamList,
   "SalesDetails"
@@ -224,13 +224,14 @@ export interface MiniArticleCardProps {
   tradeState: string;
 }
 
+
 export interface ArticleCardProps {
+  id: number;
   title: string;
   price: number;
-  tradeType: string;
-  location?: string;
   createdTime: string;
   favoriteCount: number;
   chatCount: number;
   thumbnail: string;
+  tradeState: string;
 }

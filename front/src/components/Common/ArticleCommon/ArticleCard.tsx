@@ -1,6 +1,6 @@
 import React from "react";
-import {StyleSheet, View} from "react-native";
-import {ArticleCardProps} from "../../../types/types";
+import { StyleSheet, View } from "react-native";
+import { ArticleCardProps } from "../../../types/types";
 import ArticleCardImage from "./ArticleCardImage";
 import ArticleCardTitle from "./ArticleCardTitle";
 import ArticleCardTradeDetails from "./ArticleCardTradeDetails";
@@ -13,6 +13,7 @@ export default function ArticleCard({
   favoriteCount,
   chatCount,
   thumbnail,
+  tradeState,
 }: ArticleCardProps) {
   return (
     <View style={styles.container}>
