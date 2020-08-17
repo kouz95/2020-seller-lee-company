@@ -32,9 +32,9 @@ interface ArticlesGetByTradeState {
 
 export const articlesAPI = {
   get: async (params: ArticlesGet) =>
-    await axios.get(`${BASE_URL}${domain.article}`, {params}),
+    await axios.get(`${BASE_URL}${domain.article}`, { params }),
   getByTradeState: async (params: ArticlesGetByTradeState) =>
-    await axios.get(`${BASE_URL}${domain.article}/trade-state`, {params}),
+    await axios.get(`${BASE_URL}${domain.article}/trade-state`, { params }),
   post: async (data: ArticlesPost) =>
     await axios.post(`${BASE_URL}${domain.article}`, data),
   put: async (articleId: number, data: ArticlesPost) =>
@@ -42,7 +42,10 @@ export const articlesAPI = {
   delete: async (articleId: number) =>
     await axios.delete(`${BASE_URL}${domain.article}/${articleId}`),
   updateTradeState: async (id: number, data: ArticlesGetByTradeState) =>
-    await axios.patch(`${BASE_URL}${domain.article}/${id}${domain.tradeState}`, data),
+    await axios.patch(
+      `${BASE_URL}${domain.article}/${id}${domain.tradeState}`,
+      data,
+    ),
 };
 
 export const articleDetailAPI = {

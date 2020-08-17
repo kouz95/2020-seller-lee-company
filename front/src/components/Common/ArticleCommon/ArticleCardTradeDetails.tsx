@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import calculateDiffTime from "../../../calculateDiffTime";
 
 interface IArticleCardTradeDetails {
@@ -11,8 +11,8 @@ interface IArticleCardTradeDetails {
 }
 
 export default function ArticleCardTradeDetails({
-                                                  createdTime,
-                                                }: IArticleCardTradeDetails) {
+  createdTime,
+}: IArticleCardTradeDetails) {
   return (
     <View style={styles.tradeDetailContainer}>
       <View style={styles.timeContainer}>

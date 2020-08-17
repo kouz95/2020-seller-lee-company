@@ -174,6 +174,8 @@ class ArticleControllerTest {
                                         .description("게시글 태그의 리스트"),
                                 fieldWithPath("photos").type(JsonFieldType.ARRAY)
                                         .description("게시글 사진의 리스트"),
+                                fieldWithPath("author.id").type(JsonFieldType.NUMBER)
+                                        .description("게시글 작성자의 ID"),
                                 fieldWithPath("author.avatar").type(JsonFieldType.STRING)
                                         .description("게시글 작성자의 프로필 사진"),
                                 fieldWithPath("author.nickname").type(JsonFieldType.STRING)
@@ -206,7 +208,7 @@ class ArticleControllerTest {
         when(articleViewService.showSalesDetails(any(), any()))
                 .thenReturn(Collections.singletonList(SalesHistoryResponse.of(ARTICLE1, 5L, 3L)));
 
-        mockMvc.perform(get(ARTICLE_URI + "/tradeState")
+        mockMvc.perform(get(ARTICLE_URI + "/trade-state")
                 .param("tradeState", "예약중|판매중"))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -221,7 +223,7 @@ class ArticleControllerTest {
 
         String request = objectMapper.writeValueAsString(tradeSateUpdateRequest);
 
-        mockMvc.perform(patch(ARTICLE_URI + "/tradeState")
+        mockMvc.perform(patch(ARTICLE_URI + "/trade-state")
                 .content(request)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))

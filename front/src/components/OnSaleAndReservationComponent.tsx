@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import {
   Animated,
   StyleSheet,
@@ -8,27 +8,27 @@ import {
   View,
 } from "react-native";
 import colors from "../colors";
-import {ArticleCardProps, MyPageParamList} from "../types/types";
-import {useNavigation} from "@react-navigation/native";
-import {StackNavigationProp} from "@react-navigation/stack";
+import { ArticleCardProps, MyPageParamList } from "../types/types";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import ArticleCard from "./Common/ArticleCommon/ArticleCard";
-import {articlesAPI} from "../api/api";
-import {COMPLETED, RESERVATION} from "../screens/SalesDetailsScreen";
+import { articlesAPI } from "../api/api";
+import { COMPLETED, RESERVATION } from "../screens/SalesDetailsScreen";
 
 type SalesDetails = StackNavigationProp<MyPageParamList, "SalesDetails">;
 
 const ANIMATE_START_VALUE = 0.93;
 
 export default function OnSaleAndReservationComponent({
-                                                        id,
-                                                        title,
-                                                        price,
-                                                        createdTime,
-                                                        favoriteCount,
-                                                        chatCount,
-                                                        thumbnail,
-                                                        tradeState,
-                                                      }: ArticleCardProps) {
+  id,
+  title,
+  price,
+  createdTime,
+  favoriteCount,
+  chatCount,
+  thumbnail,
+  tradeState,
+}: ArticleCardProps) {
   const navigation = useNavigation<SalesDetails>();
   const AnimateTouchableWithoutFeedback = Animated.createAnimatedComponent(
     TouchableWithoutFeedback,
@@ -51,7 +51,7 @@ export default function OnSaleAndReservationComponent({
 
   const patchTradeState = async (data: string) => {
     console.log(id);
-    await articlesAPI.updateTradeState(id, {tradeState: data});
+    await articlesAPI.updateTradeState(id, { tradeState: data });
     setTradeStateState(data);
     data === COMPLETED && navigation.navigate("Evaluation");
   };
@@ -59,7 +59,7 @@ export default function OnSaleAndReservationComponent({
   return (
     <AnimateTouchableWithoutFeedback
       onPress={clickArticleAnimate}
-      style={{transform: [{scale: clickValue}]}}
+      style={{ transform: [{ scale: clickValue }] }}
     >
       <View style={styles.salesDetailsComponent}>
         <View style={styles.miniArticleContainer}>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   salesDetailsComponent: {
     flex: 1,
   },
-  miniArticleContainer: {margin: 5},
+  miniArticleContainer: { margin: 5 },
   salesCompletedContainer: {
     backgroundColor: colors.primary,
     justifyContent: "center",

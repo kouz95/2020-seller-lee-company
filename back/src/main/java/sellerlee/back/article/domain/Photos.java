@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 
 @Embeddable
 public class Photos {
+    private static final int THUMBNAIL_INDEX = 0;
+
     @ElementCollection
     @CollectionTable(name = "photo", joinColumns = @JoinColumn(name = "article_id"))
     private List<String> photos;
@@ -25,8 +27,15 @@ public class Photos {
         return new Photos(Arrays.asList(photos));
     }
 
+    public String pickThumbnail() {
+        if (photos.isEmpty()) {
+            return "";
+        }
+        return photos.get(THUMBNAIL_INDEX);
+    }
+
     public List<String> getPhotos() {
         return photos;
     }
-    
+
 }
