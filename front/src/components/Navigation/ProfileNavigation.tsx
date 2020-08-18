@@ -6,6 +6,7 @@ import ProfileScreen from "../../screens/ProfileScreen";
 type ProfileNavigationParamList = {
   ProfileScreen: undefined;
   SalesHistoryScreen: undefined;
+  PurchaseScreen: undefined;
 };
 
 const Stack = createStackNavigator<ProfileNavigationParamList>();

@@ -22,9 +22,7 @@ export default function ArticleCard({
       </View>
       <View style={styles.contentsContainer}>
         <ArticleCardTitle title={title} />
-        <ArticleCardTradeDetails
-          createdTime={createdTime}
-        />
+        <ArticleCardTradeDetails createdTime={createdTime} />
         <ArticleCardAdditional
           price={price}
           chatCount={chatCount}
@@ -34,7 +32,6 @@ export default function ArticleCard({
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

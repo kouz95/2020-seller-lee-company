@@ -5,7 +5,6 @@
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { ImageURISource } from "react-native";
 
 export type TabParamList = {
   Home: undefined;
@@ -169,7 +168,6 @@ export interface Article {
   categoryName: string;
   price: number;
   contents: string;
-  tradeType: string;
   tradeState: string;
   tags: string[];
   photos: string[];
@@ -180,6 +178,16 @@ export interface Article {
   createdTime: string;
 }
 
+export interface ArticleCard {
+  title: string;
+  price: number;
+  tradeType: string;
+  tradeLocation: string;
+  thumbnail: string;
+  createdTime: string;
+}
+
+//둘중 하나 선택해야함 프론트에 tradeState 고르는 컴포넌트 만들때 필요
 export interface ArticleCardProps {
   id: number;
   title: string;
@@ -210,7 +218,6 @@ export type MyPageParamList = {
   ArticleDetailScreen: undefined;
   Evaluation: undefined;
 };
-
 
 export type MyPageNavigationProps = StackNavigationProp<
   MyPageParamList,
