@@ -1,16 +1,21 @@
-<img src="images/graphic.jpg" width="40%" height="40%">
+<p align="center">
+  <img src="images/graphic.jpg" width="70%" height="70%">
+</p>
 
-대한민국 중고 거래 앱 곧 1등! 
-당신이 속한 그룹 어디든, 당신이 원하는 무엇이든 사고 팔 수 있는 조**직** 중**고** 거**래** 서비스 직고래입니다.
+*대한민국 중고 거래 앱 곧 1등! 당신이 속한 그룹 어디든, 당신이 원하는 무엇이든 사고 팔 수 있는 조**직** 중**고** 거**래** 서비스, 직고래입니다.*
 
 ---
-### 📃 Table of Contents 
-1. [서비스 소개](#chapter-1)
-2. [기술 소개](#chapter-2)
+## 🗂 contents
+*목차 옆 마우스를 클릭하면 해당 항목으로 이동합니다.*
+1. 직고래 이야기 [🖱](#chapter-1)
+2. 기술 이야기 [🖱](#chapter-2)
 
-### 서비스 소개 <a id="chapter-1"></a>
-[서비스 소개 영상](https://www.youtube.com/watch?v=IZWhBI0Tk2c)
+## 🐳 직고래 이야기 <a id="chapter-1"></a>
+  <img src="images/jikgoraeThumnail.png" width="30%" height="30%">
 
+_Watch the video [📺](https://www.youtube.com/watch?v=IZWhBI0Tk2c)_
+
+---
 터틀 : 이 작고 사소한 무언가를 팔아야 하는데.. 팔기에는 번거롭고, 안 팔기에는 아깝고..
 
 스티치 : 사기 안 당하려면 직거래가 좋긴 한데.. 가기 너무 귀찮아.. 내 근처에 살 사람 없나?
