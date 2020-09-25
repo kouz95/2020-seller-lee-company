@@ -70,6 +70,62 @@ public class MessageAcceptanceTest extends AcceptanceTest {
                     assertThat(response.getRoomId()).isEqualTo(request.getRoomId());
                     assertThat(response.getSenderId()).isEqualTo(request.getSenderId());
                     assertThat(response.getContent()).isEqualTo(request.getMessage());
+                }),
+                dynamicTest("multi", () -> {
+                    Runnable d = () -> {
+                        try {
+                            for (int i = 0; i < 5; i++) {
+                                System.out.println("0");
+                                sendMessage(request);
+                                Thread.sleep(1000);
+                            }
+                        } catch (JsonProcessingException | InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    };
+                    Runnable d1 = () -> {
+                        try {
+                            for (int i = 0; i < 5; i++) {
+                                System.out.println("1");
+                                sendMessage(request);
+                                Thread.sleep(1000);
+                            }
+                        } catch (JsonProcessingException | InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    };
+                    Runnable d2 = () -> {
+                        try {
+                            for (int i = 0; i < 5; i++) {
+                                System.out.println("2");
+                                sendMessage(request);
+                                Thread.sleep(1000);
+                            }
+                        } catch (JsonProcessingException | InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    };
+                    Runnable d3 = () -> {
+                        try {
+                            for (int i = 0; i < 5; i++) {
+                                System.out.println("3");
+                                sendMessage(request);
+                                Thread.sleep(1000);
+                            }
+                        } catch (JsonProcessingException | InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    };
+
+                    Thread thread = new Thread(d);
+                    Thread thread1 = new Thread(d1);
+                    Thread thread2 = new Thread(d2);
+                    Thread thread3 = new Thread(d3);
+
+                    thread.start();
+                    thread1.start();
+                    thread2.start();
+                    thread3.start();
                 }));
     }
 

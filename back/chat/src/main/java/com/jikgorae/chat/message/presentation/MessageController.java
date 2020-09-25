@@ -4,6 +4,8 @@ import static com.jikgorae.chat.config.WebSockConfig.*;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -18,6 +20,8 @@ import com.jikgorae.chat.message.application.MessageService;
 
 @Controller
 public class MessageController {
+    private static final Logger log = LoggerFactory.getLogger(MessageController.class);
+
     public static final String DESTINATION = SUBSCRIBE + "/chat/rooms/";
     public static final String MESSAGE_URI = "/chat/messages";
     public static final String MESSAGE_REST_URI = "/chat/rooms/{roomId}/messages";
@@ -34,6 +38,7 @@ public class MessageController {
 
     @MessageMapping(MESSAGE_URI)
     public void message(MessageRequest request) {
+        log.debug(request.toString());
         MessageResponse response = messageService.save(request);
         messagingTemplate.convertAndSend(DESTINATION + request.getRoomId(), response.adjustTime());
     }
